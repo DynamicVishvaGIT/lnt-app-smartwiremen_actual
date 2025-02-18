@@ -1,0 +1,70 @@
+
+<ion-content>
+  <div class="logo-pos">
+    <img src="assets/logo/Lauritz_Knudsen.svg" class="logo">
+  </div>
+  <div class="header-align">
+    <p style="font-size: 28px;font-weight: 600;padding-left: 4px;">Sign In</p>  
+    <p style="font-size: 15px;margin-top: -16px;color: #00000080;padding-left: 4px;">Enter your details to proceed further</p>  
+  </div>
+  <div mode="ios" class="content-align">
+    <form (ngSubmit)="loginForm()">
+      <ion-row>
+        <ion-col size="12">
+          <ion-label class="required" style="color: black!important;font-size: small;font-weight: 500;">Username(Primary mobile number)</ion-label>
+          <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+            <ion-input type="tel" maxLength="10" [(ngModel)]="loginFormField.username" name="username"  placeholder="{{ 'enter_mobile_no' | translate }}" class="ion-input" >
+              <ion-icon slot="start" name="call" aria-hidden="true" class="icon-align"></ion-icon>
+            </ion-input>
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+      <br>
+      <ion-row>
+        <ion-col size="12">
+          <ion-button type="submit" color="primary" class="login-btn" expand="block">
+            {{ 'sign_in' | translate }}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-content class="ion-padding">
+  <ion-row class="app-icon-container">
+    <ion-col class="ion-text-center">
+      <img src="../../assets/imgs/logo.png" />      
+    </ion-col>
+  </ion-row>
+  <form (ngSubmit)="loginForm()">
+    <ion-row>
+      <ion-item class="ion-margin-bottom">
+        <ion-label ><ion-icon slot="start" name="call-sharp"></ion-icon></ion-label>
+        <ion-input type="tel" maxLength="10" [(ngModel)]="loginFormField.username" name="username" placeholder="{{ 'enter_mobile_no' | translate }}"></ion-input>
+      </ion-item>
+    </ion-row>
+    <ion-button class="login-btn" size="default" strong="true" color="secondary"  expand="block" shape="round" type="submit">
+      <ion-icon class="log-icon"  name="md-log-in"  ></ion-icon> {{ 'sign_in' | translate }}
+    </ion-button>
+  </form>  
+  <br>
+  <ion-row class="center">
+    <ion-col size="12" class="sign-up-link">
+      {{ 'dont_have_account' | translate }} <button (click)="goSignup()"> <ion-icon name="lock-closed"></ion-icon> {{ 'sign_up' | translate }} </button>
+    </ion-col>
+  </ion-row>
+</ion-content> -->

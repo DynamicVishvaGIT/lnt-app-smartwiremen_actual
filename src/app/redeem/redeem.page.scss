@@ -1,0 +1,259 @@
+ion-content {
+  --background: none;
+  background-color: #EFF3F6;
+}
+.gap{
+  margin-top: 10px;
+  // padding-left: 10px;
+}
+// .custom-search{
+//   --background: #D8E7F0;
+// }
+ion-searchbar.custom {
+  --background: #D8E7F0;
+  --color: #00000096;
+  --clear-button-color: black;
+  // height: 60px;
+}
+.gift-card-gap {
+  margin-top: -12px;
+  // margin-top: 8px;
+  // margin-left: 18px;
+  // margin-right: 19px;
+}
+
+.gift-card {
+  //background: #ffffff66;
+  // margin-top: -8px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.img-container {
+  width: 72px; /* set the desired width */
+  height: 35px; /* set the same value for height to make it square */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* hide overflow if the image exceeds the box */
+  border: 2px solid #3c4042; /* optional: add a border */
+  border-radius: 4px;
+  margin-top: 80%;
+}
+
+.img-googlepay-card {
+  width: 43px;
+  height: 17px;
+  object-fit: cover;
+}
+.img-gift-card {
+  width: 100%;
+  height: 74px;
+  margin-top: 40%;
+  //border-radius: 15px;
+}
+
+.img-avatar {
+  border-radius: 50%;
+  width: 100%;
+  height: 80%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top:-5px;
+}
+
+.border-bottom{
+  border-bottom: 1px solid rgba(0,0,0,.16);
+  //width: 90%;
+}
+.border-right{
+  border-right: 2px dotted #00000017;
+}
+
+.text-header-align {
+  font-size: smaller;
+  color: #00000087;
+  //margin-top: 7px;
+}
+
+.text-body-align{
+  font-size: small;
+  //margin-top: -8px;
+  //text-align: center;
+}
+
+.counter {
+  width: 150px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.counter input {
+  width: 50px;
+  border: 0;
+  line-height: 30px;
+  font-size: 14px;
+  text-align: center;
+  background: #ffff;
+  color: black;
+  appearance: none;
+  outline: 0;
+  font-weight: 500;
+}
+.counter span {
+  display: block;
+  font-size: 15px;
+  // padding: 0 10px;
+  cursor: pointer;
+  color: #3bdbdc;
+  user-select: none;
+}
+
+.border-left-color{
+  border-left: 5px solid #2edcba;
+}
+.btn-create {
+  --box-shadow: none;
+  --border-radius: 10px;
+  --padding-bottom: 25px;
+  --padding-top: 25px;
+  --padding-left: 25px;
+  --padding-right: 25px;
+  width: 100%;
+  color: #fff;
+  text-transform: none;
+  width: 94%;
+  margin-top: 43px;
+}
+// .update-btn{
+//   margin-left: 8px;
+//   --color:#fff;
+//   font-weight: bold;
+// }
+// .form-label{
+//   margin-left: 8px;
+//   margin-top: 8px;
+// }
+// .item-input-redeem{
+//   --border: none !important;
+//   --box-shadow: none !important;
+//   border-radius: 20px;
+//   margin: 8px;
+//   width: 100%;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .redeem-page ion-card {
+//   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+//   border-radius: 4px;
+// }
+// .list-header {
+//   background-color: #0a4f8b;
+//   color: #fff;
+//   margin: 0 !important;
+//   padding: 5px !important;
+// }
+// .list-header > ion-row > ion-col {
+//   font-size: 14px;
+// }
+// ion-item:nth-child(2n + 2) {
+//   --background: #f5f5f5;
+// }
+// .apply-btn {
+//   box-shadow: none;
+//   padding: 0px 15px;
+// }
+// .list-content ion-col {
+//   font-size: 14px;
+//   text-transform: capitalize;
+//   font-weight: 400;
+//   color: #676767;
+// }
+// .list-content .label.label-md {
+//   margin: 5px 0;
+// }
+// .about-page p {
+//   font-weight: 300;
+//   font-size: 13px;
+//   color: #777;
+//   line-height: 24px;
+// }
+// .product_name {
+//   white-space: initial;
+// }
+// .qty_input {
+//   width: 27px;
+//   text-align: center;
+//   vertical-align: middle;
+//   height: 27px;
+//   border: 1px solid #676767;
+
+// }
+// input[type="number"]::-webkit-inner-spin-button,
+// input[type="number"]::-webkit-outer-spin-button {
+//   -webkit-appearance: none;
+//   margin: 0;
+// }
+// .item-has-focus {
+//   --highlight-background: #ffffff;
+// }
+// ion-input {
+//   --placeholder-color: #a9a9a9;
+//   --placeholder-opacity: 1;
+// }
+// .item-input-redeem{
+//   --border: none !important;
+//   --box-shadow: none !important;
+//   border-radius: 20px;
+//   margin: 8px;
+//   width: 100%;
+// }
+// .update-btn{
+//   margin-left: 8px;
+//   --color:#fff;
+//   font-weight: bold;
+  
+// }
+// .form-label{
+//   margin-left: 8px;
+//   margin-top: 8px;
+// }

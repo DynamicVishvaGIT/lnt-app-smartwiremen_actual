@@ -1,0 +1,200 @@
+
+<ion-content>
+  <div class="header-align">
+    <p style="font-size: 28px;font-weight: 600;padding-left: 4px;">Sign Up</p>  
+    <p style="font-size: 15px;margin-top: -16px;color: #00000080;padding-left: 4px;">Tell us more about yourself</p>  
+  </div>
+  <div mode="ios" class="content-align">
+    <form (ngSubmit)="signupForm()">
+      <ion-row>
+        <ion-col size="12">
+          <ion-label class="required ion-label">First Name</ion-label>
+          <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+            <ion-input type="text" [(ngModel)]="signupFormField.first_name" name="first_name" placeholder="{{ 'enter_first_name' | translate }}" class="ion-input" >
+            </ion-input>
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+      <!-- <br> -->
+      <ion-row>
+        <ion-col size="12">
+          <ion-label class="required ion-label">Last Name</ion-label>
+          <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+            <ion-input type="text" [(ngModel)]="signupFormField.last_name" name="last_name" placeholder="{{ 'enter_last_name' | translate }}" class="ion-input" >
+            </ion-input>
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-label class="required ion-label">Mobile Number</ion-label>
+          <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+            <ion-input type="number" maxLength="10" [(ngModel)]="signupFormField.username" name="username" placeholder="{{ 'enter_mob_number' | translate }}" class="ion-input" >
+            </ion-input>
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="required ion-label">State</ion-label>
+          <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+            <ionic-selectable  [(ngModel)]="signupFormField.state" name="state" [items]="states" itemValueField="id" itemTextField="name" placeholder="{{ 'select_state' | translate }}"  [canSearch]="true" (onChange)="changeState($event)" class="ion-select">
+            </ionic-selectable>          
+          </ion-item> 
+        </ion-col>
+        <ion-col size="6">
+          <ion-label class="required ion-label">City</ion-label>
+          <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+            <ionic-selectable [(ngModel)]="signupFormField.city" name="city" [items]="cities" itemValueField="id" itemTextField="name" placeholder="{{ 'select_city' | translate }}" searchPlaceholder="{{ 'search_city' | translate }}" [canSearch]="true" class="ion-select">
+            </ionic-selectable>          
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-label class="required ion-label">Pincode</ion-label>
+          <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+            <ion-input type="tel" [(ngModel)]="signupFormField.pincode" name="pincode" placeholder="{{ 'enter_pincode' | translate }}" maxLength="6" minLength="6" [pattern]="pincode_pattern" class="ion-input" >
+          </ion-input>
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+      <br>
+      <ion-row>
+        <ion-col size="12">
+          <ion-button type="submit" color="primary" class="login-btn" expand="block">
+            {{ 'sign_up' | translate }}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+    <ion-row style="margin-top: 20px;font-size: smaller;">
+      <ion-col size="12">
+         {{ 'already_have_an_acc' | translate }}
+      </ion-col>
+    </ion-row>
+    <ion-row style="font-size: smaller;color: #015c8d;">
+      <ion-col (click)="goLogin()">
+        <b>{{ 'sign_in' | translate }}</b>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-content class="ion-padding">
+  
+  <ion-row class="app-icon-container">
+    <ion-col class="ion-text-center">
+      <img src="../../assets/imgs/logo.png" />      
+    </ion-col>
+  </ion-row>
+
+  <ion-list>
+    <ion-grid>
+      <form (ngSubmit)="signupForm()">
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label slot="start"><ion-icon name="person"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="signupFormField.first_name" name="first_name" placeholder="{{ 'enter_first_name' | translate }}" ></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label slot="start"><ion-icon name="person"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="signupFormField.last_name" name="last_name" placeholder="{{ 'enter_last_name' | translate }}" ></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label slot="start"><ion-icon name="call"></ion-icon></ion-label>
+            <ion-input type="number" maxLength="10" [(ngModel)]="signupFormField.username" name="username" placeholder="{{ 'enter_mob_number' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+     <ion-row>
+       
+          <ion-item class="ion-margin-bottom">
+            <ion-label slot="start" style="-webkit-flex: none!important; 
+            flex: none!important;"><ion-icon name="location-sharp"></ion-icon></ion-label>
+            <ionic-selectable  [(ngModel)]="signupFormField.state" name="state" [items]="states" itemValueField="id" itemTextField="name" placeholder="{{ 'select_state' | translate }}"  [canSearch]="true" (onChange)="changeState($event)">
+            </ionic-selectable>
+           
+          </ion-item>
+        </ion-row>
+        <ion-row> 
+          <ion-item class="ion-margin-bottom">
+            <ion-label slot="start" style="-webkit-flex: none!important; 
+            flex: none!important;"><ion-icon name="location-sharp"></ion-icon></ion-label>
+            
+            <ionic-selectable   #cityComponent 
+                [(ngModel)]="signupFormField.city" 
+                name="city" 
+                [items]="cities" 
+                itemValueField="id" 
+                itemTextField="name" 
+                placeholder="{{ 'select_city' | translate }}" 
+                searchPlaceholder="{{ 'search_city' | translate }}" 
+                [canSearch]="true"    
+              >
+            	
+            </ionic-selectable>
+           
+          </ion-item>
+        </ion-row> 
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label slot="start"><ion-icon name="location-sharp"></ion-icon></ion-label>
+            <ion-input type="tel" [(ngModel)]="signupFormField.pincode" name="pincode" placeholder="{{ 'enter_pincode' | translate }}" maxLength="6" minLength="6" [pattern]="pincode_pattern"></ion-input>
+          </ion-item>
+        </ion-row> 
+        <ion-button class="login-btn"   shape="round" color="secondary"  expand="block" slot="start" type="submit">
+        	<ion-icon  name="md-log-in" style="margin-right: 8px;"></ion-icon> {{ 'sign_up' | translate }}
+        </ion-button>
+      </form>
+      <ion-row class="center" style="margin-top: 20px;">
+		<ion-col size="12" class="sign-up-link">
+			 {{ 'already_have_an_acc' | translate }} <button  (click)="goLogin()"> <ion-icon name="lock-closed-sharp"></ion-icon> {{ 'sign_in_here' | translate }} </button>
+		</ion-col>
+	  </ion-row>
+
+  </ion-grid>
+</ion-list>
+</ion-content> -->

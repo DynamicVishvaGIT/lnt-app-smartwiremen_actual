@@ -1,0 +1,115 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay" side="start" >
+      <!-- <ion-toolbar>
+        <ion-icon name="close-outline" style="color:#131313;font-size: x-large;float: right;"></ion-icon>
+        <ion-title color="light">Menu</ion-title>
+      </ion-toolbar> -->
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header >  <!--(click)="goToProfile()"-->
+            <ion-row>
+              <ion-col size="3" class="home-header-img"> <!--ion-text-center -->
+                 <img src="{{ displayProfileData.avatar }}" *ngIf="displayProfileData.avatar" width="215" height="215">
+              </ion-col>
+              <ion-col size="9">
+                <p class="name-text">{{ displayProfileData.first_name }} {{ displayProfileData.last_name }}</p>
+                <p class="mail-text">{{ displayProfileData.email }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-list-header>
+          <ion-menu-toggle auto-hide="false" >
+            <!-- <ion-item (click)="notificationLog()" routerDirection="root"   detail="false" >
+              <ion-icon slot="start" name="notifications-sharp"></ion-icon>
+              <ion-label>{{'notification' | translate}}</ion-label>
+            </ion-item> -->
+            <ion-item lines="none" (click)="openPage(p)" *ngFor="let p of appPages" routerDirection="root" [class.selected]="selectedPath === p.url"  detail="false" >
+              <div [ngClass]="selectedPath===p.url?'circle-selected-container':'circle-container'">
+                <ion-icon slot="start" size="small" name="{{p.icon}}" [ngClass]="selectedPath===p.url?'icon-color':''"></ion-icon>
+              </div>
+              <ion-label [ngClass]="selectedPath===p.url?'label-color':''" style="margin-left: 20px;">{{''+p.title | translate}}</ion-label>
+            </ion-item>
+            <ion-item lines="none" (click)="goOrders()" routerDirection="root" detail="false" [class.selected]="selectedPath === '/orders'">
+              <div [ngClass]="selectedPath==='/orders'?'circle-selected-container':'circle-container'">
+                <ion-icon slot="start" size="small" name="cart-outline" [ngClass]="selectedPath==='/orders'?'icon-color':''"></ion-icon>
+              </div>
+              <ion-label [ngClass]="selectedPath==='/orders'?'label-color':''" style="margin-left: 20px;">{{'orders' | translate}}</ion-label>
+            </ion-item>
+            <ion-item lines="none" (click)="goPassbook()" routerDirection="root"  detail="false" [class.selected]="selectedPath === '/passbook'">
+              <div [ngClass]="selectedPath==='/passbook'?'circle-selected-container':'circle-container'">
+                <ion-icon slot="start" size="small" name="book-outline" [ngClass]="selectedPath==='/passbook'?'icon-color':''"></ion-icon>
+              </div>
+              <ion-label [ngClass]="selectedPath==='/passbook'?'label-color':''" style="margin-left: 20px;">{{'passbook' | translate}}</ion-label>
+            </ion-item>
+            <!-- <ion-item (click)="goTds()" routerDirection="root"   detail="false" >
+              <ion-icon slot="start" name="document-outline"></ion-icon>
+              <ion-label>{{'TDS' | translate}}</ion-label>
+            </ion-item> -->
+            <ion-item lines="none" (click)="changeLanguage()" routerDirection="root" detail="false" [class.selected]="selectedPath === '/language'">
+              <div [ngClass]="selectedPath==='/language'?'circle-selected-container':'circle-container'">
+                <ion-icon slot="start" size="small" name="settings-outline" [ngClass]="selectedPath==='/language'?'icon-color':''"></ion-icon>
+              </div>
+              <ion-label [ngClass]="selectedPath==='/language'?'label-color':''" style="margin-left: 20px;">{{'change_lang' | translate}}</ion-label>
+            </ion-item>
+            <ion-item lines="none" (click)="goToProjectList()" routerDirection="root"  detail="false" [class.selected]="selectedPath === '/projectlist'">
+              <div [ngClass]="selectedPath==='/projectlist'?'circle-selected-container':'circle-container'">
+                <ion-icon slot="start" size="small" name="reader-outline" [ngClass]="selectedPath==='/projectlist'?'icon-color':''"></ion-icon>
+              </div>
+              <ion-label [ngClass]="selectedPath==='/projectlist'?'label-color':''" style="margin-left: 20px;">{{'project_list' | translate}}</ion-label>
+            </ion-item>
+            <ion-item lines="none" (click)="goToAddCounterBoy()" routerDirection="root" detail="false" [class.selected]="selectedPath === '/scancounterboy'">
+              <div [ngClass]="selectedPath==='/scancounterboy'?'circle-selected-container':'circle-container'">
+                <ion-icon slot="start" size="small" name="person-outline" [ngClass]="selectedPath==='/scancounterboy'?'icon-color':''"></ion-icon>
+              </div>
+              <ion-label [ngClass]="selectedPath==='/scancounterboy'?'label-color':''" style="margin-left: 20px;">Scan Counter Boy</ion-label>
+            </ion-item>
+            <!-- <ion-item (click)="doLogout()" routerDirection="root"  detail="false" >
+              <div class="circle-container">
+                <ion-icon slot="start" size="small" name="log-out-outline"></ion-icon>
+              </div>
+              <ion-label style="margin-left: 20px;">{{'logout' | translate}}</ion-label>
+            </ion-item> -->
+          </ion-menu-toggle>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </ion-list>
+        <ion-list id="labels-list">
+          <ion-item lines="none" (click)="doLogout()" [class.selected]="selectedPath === '/logout'">
+            <div [ngClass]="selectedPath==='/logout'?'circle-selected-container':'circle-container'">
+              <ion-icon slot="start" size="small" name="log-out-outline" [ngClass]="selectedPath==='/logout'?'icon-color':''"></ion-icon>
+            </div>
+            <ion-label [ngClass]="selectedPath==='/logout'?'label-color':''" style="margin-left: 20px;">{{'logout' | translate}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+    <ion-tabs  #myTabs (ionTabsDidChange)="getSelectedTab()">
+      <ion-tab-bar slot="bottom" selectedTab="{{tab_name}}" *ngIf="tab_name =='complaint'|| tab_name =='home' || tab_name =='language'  || tab_name =='profile'|| tab_name =='redeem' || tab_name =='scancode' ">
+        <ion-tab-button tab="home">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>{{ 'dashboard' | translate }}</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="redeem">
+          <ion-icon name="gift-outline"></ion-icon>
+          <ion-label >{{ 'gift_redeem' | translate }}</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="scancode">
+          <ion-icon name="barcode-sharp"></ion-icon>
+          <ion-label>{{ 'scan_code' | translate }}</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="profile">
+          <ion-icon name="person-outline"></ion-icon>
+          <ion-label>{{ 'profile' | translate }}</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-split-pane>
+</ion-app>

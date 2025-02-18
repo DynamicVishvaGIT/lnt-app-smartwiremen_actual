@@ -1,0 +1,241 @@
+<ion-content [fullscreen]="true">
+    <div class="ion-padding-top ion-padding-horizontal">
+      	<ion-grid>
+			<ion-row>
+				<ion-col size="2" style="text-align: start;margin-left: -10px;" (click)="goBack()">
+					<ion-icon name="chevron-back-outline"></ion-icon>
+				</ion-col>
+				<ion-col size="8" style="text-align: center;">
+					<strong class="header" style="color:#131313;">{{ 'view_order' | translate }}</strong>
+				</ion-col>
+			</ion-row>
+      	</ion-grid>
+    </div>
+	<div class="gap" *ngIf="view_order">
+		<ion-grid>
+		  <ion-row>
+			<ion-col size="12">
+			  	<ion-card class="order-card"> 
+					<ion-card-content>
+						<ion-row >
+							<ion-col size="4">{{ 'order_id' | translate }}:</ion-col>
+							<ion-col size="8" class="text-body-align">#{{ view_order.id }}</ion-col>
+							<ion-col size="4" >{{ 'courier_id' | translate }}:</ion-col>
+							<ion-col size="8" *ngIf="!view_order.courier_id" class="text-body-align">N/A</ion-col>
+							<ion-col size="8" *ngIf="view_order.courier_id" class="text-body-align">#{{ view_order.courier_id ? view_order.courier_id : 'NA' }}</ion-col>
+							<ion-col size="4" >{{ 'order_date' | translate }}:</ion-col>
+							<ion-col size="8" class="text-body-align">{{ view_order.created_at|date :'dd MMM, yyyy' }}</ion-col>
+						</ion-row>
+					</ion-card-content>
+			  	</ion-card>
+			</ion-col>
+		  </ion-row>
+		</ion-grid>
+	</div>
+	<div class="gap2" *ngIf="view_order">
+		<ion-grid>
+		  <ion-row>
+			<ion-col size="12">
+			  	<ion-card class="order-card2 border-bottom-color"> 
+					<ion-card-content>
+						<ion-row>
+							<ion-col size="4">{{ 'product_name' | translate }}:</ion-col>
+							<ion-col size="8" class="text-body-align">{{ view_order.gift_name }}</ion-col>
+							<ion-col size="3" >{{ 'qty' | translate }}:</ion-col>
+							<ion-col size="3" >{{ view_order.quantity ? view_order.quantity : 'NA' }}</ion-col>
+							<ion-col size="2" >{{ 'total' | translate }}:</ion-col>
+							<ion-col size="4" >{{ view_order.total_points }}</ion-col>
+							<ion-col size="6" >{{ 'request_received' | translate }}:</ion-col>
+							<ion-col size="6" >
+								<ion-icon name="checkmark-circle" class="icon-size" color="success" *ngIf="view_order.request_registered == 'yes'"></ion-icon>
+								<ion-icon name="close-circle" class="icon-size" color="danger" *ngIf="view_order.request_registered == 'no'"></ion-icon>
+							</ion-col>
+							<ion-col size="6" >{{ 'request_registered' | translate }}:</ion-col>
+							<ion-col size="6" >
+								<ion-icon name="checkmark-circle" class="icon-size" color="success" *ngIf="view_order.request_registered == 'yes'"></ion-icon>
+								<ion-icon name="close-circle" class="icon-size" color="danger" *ngIf="view_order.request_registered == 'no'"></ion-icon>
+							</ion-col>
+							<ion-col size="6" >{{ 'request_approved' | translate }}:</ion-col>
+							<ion-col size="6" >
+								<ion-icon name="checkmark-circle" class="icon-size" color="success" *ngIf="view_order.request_approved == 'yes'"></ion-icon>
+								<ion-icon name="close-circle" class="icon-size" color="danger" *ngIf="view_order.request_approved == 'no'"></ion-icon>
+							</ion-col>
+							<ion-col size="8" >{{ 'waiting_commercial_clearance' | translate }}:</ion-col>
+							<ion-col size="4" >
+								<ion-icon name="checkmark-circle" class="icon-size" color="success" *ngIf="view_order.waiting_commercial_clearance == 'yes'"></ion-icon>
+								<ion-icon name="close-circle" class="icon-size" color="danger" *ngIf="view_order.waiting_commercial_clearance == 'no'"></ion-icon>
+							</ion-col>
+							<ion-col size="6" >{{ 'gift_procured' | translate }}:</ion-col>
+							<ion-col size="6" >
+								<ion-icon name="checkmark-circle" class="icon-size" color="success" *ngIf="view_order.gift_procured == 'yes'"></ion-icon>
+								<ion-icon name="close-circle" class="icon-size" color="danger" *ngIf="view_order.gift_procured == 'no'"></ion-icon>
+							</ion-col>
+							<ion-col size="6" >{{ 'gift_dispatched' | translate }}:</ion-col>
+							<ion-col size="6" >
+								<ion-icon name="checkmark-circle" class="icon-size" color="success" *ngIf="view_order.gift_dispatched == 'yes'"></ion-icon>
+								<ion-icon name="close-circle" class="icon-size" color="danger" *ngIf="view_order.gift_dispatched == 'no'"></ion-icon>
+							</ion-col>
+							<ion-col size="6" >{{ 'dispatched_remark' | translate }}:</ion-col>
+							<ion-col size="6" class="text-body-align">{{view_order.dispatched_remark ? view_order.dispatched_remark : 'NA'}}</ion-col>
+							<ion-col size="5"  *ngIf="view_order.dispatched_date">{{ 'dispatched_date' | translate }}:</ion-col>
+							<ion-col size="7" class="text-body-align" *ngIf="view_order.dispatched_date">{{ view_order.dispatched_date |date :'dd MMM, yyyy' }}</ion-col>
+							<ion-col size="4" >{{ 'cancel_remark' | translate }}:</ion-col>
+							<ion-col size="8" >{{view_order.cancel_reason ? view_order.cancel_reason : 'NA'}}</ion-col>
+							<ion-col size="4" *ngIf="view_order.tracking_url">{{ 'track_order' | translate }}:</ion-col>
+							<ion-col size="8" class="text-body-align" *ngIf="view_order.tracking_url">
+								<ion-button (click)="openUrl(view_order.tracking_url)" style="width: 76px; --color: white;" color="primary" size="small" >{{ 'track' | translate }}</ion-button>
+							</ion-col>
+						</ion-row>
+					</ion-card-content>
+			  	</ion-card>
+			</ion-col>
+		  </ion-row>
+		</ion-grid>
+	</div>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-header>
+  <ion-toolbar>
+	<ion-buttons slot="start">
+		<ion-button (click)="goBack()">
+		  <ion-icon color="light" name="arrow-back-outline" ></ion-icon>
+		</ion-button>
+	  </ion-buttons>
+    <ion-title>{{ 'view_order' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+	<ion-card mode="md">
+  	  	<ion-card-content>
+  		    <ion-card-title>
+				{{ 'order_details' | translate }}
+			</ion-card-title>
+			<ion-row *ngIf="view_order">
+
+				<ion-col size="6" >{{ 'order_id' | translate }}</ion-col>
+				<ion-col size="6" >#{{ view_order.id }}</ion-col>
+
+				<ion-col size="6" >{{ 'courier_id' | translate }}</ion-col>
+				<ion-col size="6" *ngIf="!view_order.courier_id">N/A</ion-col>
+				<ion-col size="6" *ngIf="view_order.courier_id">#{{ view_order.courier_id ? view_order.courier_id : 'NA' }}</ion-col>
+
+				<ion-col size="6" >{{ 'order_date' | translate }}</ion-col>
+				<ion-col size="6" >{{ view_order.created_at|date :'dd MMM, yyyy' }}</ion-col>
+					
+				<ion-col size="6" >{{ 'product_name' | translate }}</ion-col>
+				<ion-col size="6" >{{ view_order.gift_name }}</ion-col>
+					
+				<ion-col size="6" >{{ 'qty' | translate }}</ion-col>
+				<ion-col size="6" >{{ view_order.quantity }}</ion-col>
+
+				<ion-col size="6" >{{ 'total' | translate }}</ion-col>
+				<ion-col size="6" >{{ view_order.total_points }}</ion-col>
+				
+				<ion-col size="6" >{{ 'request_received' | translate }}</ion-col>
+				<ion-col size="6" >
+					<ion-icon name="checkmark-circle" color="success" *ngIf="view_order.request_received == 'yes'"></ion-icon>
+					<ion-icon name="close-circle" color="danger" *ngIf="view_order.request_received == 'no'"></ion-icon>
+				</ion-col>
+
+				<ion-col size="6" >{{ 'request_registered' | translate }}</ion-col>
+				<ion-col size="6" >
+					<ion-icon name="checkmark-circle" color="success" *ngIf="view_order.request_registered == 'yes'"></ion-icon>
+					<ion-icon name="close-circle" color="danger" *ngIf="view_order.request_registered == 'no'"></ion-icon>
+				</ion-col>
+
+				<ion-col size="6" >{{ 'request_approved' | translate }}</ion-col>
+				<ion-col size="6" >
+					<ion-icon name="checkmark-circle" color="success" *ngIf="view_order.request_approved == 'yes'"></ion-icon>
+					<ion-icon name="close-circle" color="danger" *ngIf="view_order.request_approved == 'no'"></ion-icon>
+				</ion-col>
+				
+				<ion-col size="6" >{{ 'waiting_commercial_clearance' | translate }}</ion-col>
+				<ion-col size="6" >
+					<ion-icon name="checkmark-circle" color="success" *ngIf="view_order.waiting_commercial_clearance == 'yes'"></ion-icon>
+					<ion-icon name="close-circle" color="danger" *ngIf="view_order.waiting_commercial_clearance == 'no'"></ion-icon>
+				</ion-col>
+
+				<ion-col size="6" >{{ 'gift_procured' | translate }}</ion-col>
+				<ion-col size="6" >
+					<ion-icon name="checkmark-circle" color="success" *ngIf="view_order.gift_procured == 'yes'"></ion-icon>
+					<ion-icon name="close-circle" color="danger" *ngIf="view_order.gift_procured == 'no'"></ion-icon>
+				</ion-col>
+
+				<ion-col size="6" >{{ 'gift_dispatched' | translate }}</ion-col>
+				<ion-col size="6" >
+					<ion-icon name="checkmark-circle" color="success" *ngIf="view_order.gift_dispatched == 'yes'"></ion-icon>
+					<ion-icon name="close-circle" color="danger" *ngIf="view_order.gift_dispatched == 'no'"></ion-icon>
+				</ion-col>
+				
+				<ion-col size="6" >{{ 'dispatched_remark' | translate }}</ion-col>
+				<ion-col size="6" >
+					<span>{{view_order.dispatched_remark ? view_order.dispatched_remark : 'NA'}}</span>
+				</ion-col>
+
+				<ion-col size="6" >{{ 'dispatched_date' | translate }}</ion-col>
+				<ion-col size="6" >
+					<span *ngIf="view_order.dispatched_date">{{ view_order.dispatched_date |date :'dd MMM, yyyy' }}</span>
+				</ion-col>
+
+				<ion-col size="6" >{{ 'cancel_remark' | translate }}</ion-col>
+				<ion-col size="6" >
+					<span>{{view_order.cancel_reason ? view_order.cancel_reason : 'NA'}}</span>
+				</ion-col>
+
+				<ion-col size="6" >{{ 'track_order' | translate }}</ion-col>
+				<ion-col size="6" >
+					<button (click)="openUrl(view_order.tracking_url)" *ngIf="view_order.tracking_url">{{ 'track' | translate }}</button>
+				</ion-col>
+
+			</ion-row>
+		</ion-card-content>
+	</ion-card>
+</ion-content>
+ -->

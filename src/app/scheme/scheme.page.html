@@ -1,0 +1,36 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon color="light" name="arrow-back-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ 'scheme_n_offers' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding">
+  <ion-refresher  slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="ion-padding-top ion-padding-horizontal">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2" style="text-align: start;margin-left: -28px;" (click)="goBack()">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+          <!-- <ion-menu-button></ion-menu-button> -->
+        </ion-col>
+        <ion-col size="8" style="text-align: center;">
+          <strong class="header" style="color:#131313;">{{ 'scheme_n_offers' | translate }}</strong>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-list class="gap">
+	  <ion-item lines="none" *ngFor="let item of items" (click)="itemSelected(item)">
+	    {{ item.title }}
+      <ion-icon slot="end" name="caret-forward-circle-sharp" color="secondary"></ion-icon>
+	  </ion-item>  
+	</ion-list>
+</ion-content>

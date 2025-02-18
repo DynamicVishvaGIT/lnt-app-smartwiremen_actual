@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon color="light" name="arrow-back-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Game</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="questions">
+  <div *ngFor="let question of questions; let i = index;">
+
+    <ion-card mode="ios" >
+      <ion-card-header>
+        <ion-card-subtitle style="font-size: 20px;">Q.{{i+1}} {{question.Q.question|titlecase}} </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+    <form>
+        <ion-radio-group 
+        allowEmptySelection="false" mode="md" [(ngModel)]="quiz_answer[i]"  name="quiz_answer" >
+          <ion-list-header>
+            <ion-label style="text-align: left;">Please select one</ion-label>
+          </ion-list-header>
+          <ion-item *ngFor="let item of question.O">
+            <ion-label class="ion-text-wrap">
+            {{item.question_option |titlecase}}
+              </ion-label>
+            <ion-radio  slot="start" value="{{item.option_id}},{{item.question_id}}"></ion-radio>
+            <br>
+          </ion-item>
+      
+        </ion-radio-group>
+        </form>
+      </ion-card-content>
+      </ion-card>
+  </div>
+  
+  <div>
+    <ion-button  *ngIf="questions" expand="block" class="answer-question ion-margin" (click)="submitQuestions()">{{'submit' |translate}}</ion-button>
+  </div>
+</div>
+</ion-content>

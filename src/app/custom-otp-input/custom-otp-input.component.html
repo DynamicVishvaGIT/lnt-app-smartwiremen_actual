@@ -1,0 +1,13 @@
+<div class="otp-container">
+  <input
+    *ngFor="let otpDigit of otpArray; let i = index"
+    type="text"
+    maxlength="1"
+    [value]="otpArray[i]"
+    (input)="onInput($event, i)"
+    (keydown)="onKeydown($event, i)"
+    (paste)="onPaste($event)"
+    (focus)="onInputFocus($event.target)"
+  />
+</div>
+<!-- [(ngModel)]="otpArray[i]" -->

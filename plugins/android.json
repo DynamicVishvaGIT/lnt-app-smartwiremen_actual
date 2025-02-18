@@ -1,0 +1,65 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-advanced-http": {
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "cordova-plugin-appminimize": {
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "cordova-plugin-datepicker": {
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "cordova-plugin-file-opener2": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "cordova-plugin-ionic-webview": {
+      "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "onesignal-cordova-plugin": {
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    },
+    "cordova-plugin-androidx-adapter": {
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    }
+  },
+  "dependent_plugins": {
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.lnt.smartwiremen"
+    }
+  }
+}

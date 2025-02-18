@@ -1,0 +1,163 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" [hidden]=showKycForm>
+      <ion-button (click)="goBack()">
+        <ion-icon color="light" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title [hidden]=showKycForm>KYC Update</ion-title>
+    <ion-title [hidden]=showKycFormdisone>Disclaimer</ion-title>
+    <ion-title [hidden]=showKycFormdistwo>Disclaimer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-grid>
+
+    <!-- <ion-row>
+      <ion-item class="ion-margin-bottom">
+        <ion-label ><ion-icon slot="start" name="document-outline"></ion-icon></ion-label>
+        <ion-input type="text" placeholder="Enter GST number"></ion-input>
+      </ion-item>
+    </ion-row> -->
+    <form *ngIf="kycFormField" (ngSubmit)="kycForm()">
+      <div [hidden]=showKycForm>
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon slot="start" name="call-outline"></ion-icon></ion-label>
+            <ion-input type="text" placeholder="Enter Pan & Aadhar link Phone Number" type="number" [(ngModel)]="kycFormField.linked_phonenumber" name="linked_phonenumber" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" ></ion-input>
+          </ion-item>
+        </ion-row>
+        <hr>
+        
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon slot="start" name="card-outline"></ion-icon></ion-label>
+            <ion-input type="text" placeholder="Enter Pan Card Number" [(ngModel)]="kycFormField.pan_card_no" name="pan_card_no" maxlength="10" autocapitalize="characters"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-col size="12"  class="home-header-img" *ngIf="pan_card_img">
+          <!-- <img src="{{pan_card_img}}" *ngIf="!base64pancardImage" width="215" />  -->
+          <img src="{{ kycFormField.pan_card_img }}" *ngIf="!base64pancardImage" alt="Pan Card" width="215"/>
+          <img src="{{base64pancardImage}}" *ngIf="base64pancardImage" alt="Pan Card" width="215" />
+        </ion-col>
+        <ion-row class="app-icon-container ion-no-padding images_ion">
+          <ion-col class="ion-text-center image_button ion-no-padding">
+            <ion-button color="secondary" (click)="getpancardImage()" size="">
+              <ion-icon name="image-outline"></ion-icon>
+              <ion-label>Choose Pan Card Image</ion-label>
+            </ion-button>
+            <br>
+            <small>Note : Max 4mb image</small>
+            <ion-col ><ion-input class="form-input" type="text" hidden value="{{pan_card_img}}"></ion-input>
+              <!-- <img style="width: 100px;height: 100px;" *ngIf="base64pancardImage" src="{{base64pancardImage}}" alt="" class="image_container"> -->
+            </ion-col>
+          </ion-col>
+        </ion-row>
+        <hr>
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon slot="start" name="card-outline"></ion-icon></ion-label>
+            <ion-input type="text" placeholder="Enter Aadhar Card Number *" [(ngModel)]="kycFormField.aadhar_no" name="aadhar_no" type="number"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==12) return false;"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-col size="12"  class="home-header-img" *ngIf="aadhar_card_img">
+          <!-- <img src="{{aadhar_card_img}}" *ngIf="!base64aadharcardImage" width="215" />  -->
+          <img src="{{ kycFormField.aadhar_card_img }}" *ngIf="!base64aadharcardImage" alt="Aadhar Card" width="215"/>
+          <img src="{{base64aadharcardImage}}" *ngIf="base64aadharcardImage" alt="Aadhar Card" width="215" />
+        </ion-col>
+        <ion-row class="app-icon-container ion-no-padding images_ion">
+          <ion-col class="ion-text-center image_button ion-no-padding">
+            
+            <ion-button color="secondary" (click)="getaadharcardImage()">
+              <ion-icon name="image-outline"></ion-icon>
+              <ion-label>Choose Aadhar Card Image</ion-label>
+            </ion-button>
+            <br>
+            <small>Note : Max 4mb image</small>
+            <ion-col ><ion-input class="form-input" type="text" hidden value="{{aadhar_card_img}}"></ion-input>
+              <!-- <img style="width: 100px;height: 100px;" *ngIf="base64pancardImage" src="{{base64pancardImage}}" alt="" class="image_container"> -->
+            </ion-col>
+          </ion-col>
+        </ion-row>
+        <hr>
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon slot="start" name="card-outline"></ion-icon></ion-label>
+            <ion-input type="text" placeholder="Enter Cancel Cheque Number" [(ngModel)]="kycFormField.cancel_check_no" name="cancel_check_no" type="number"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-col size="12"  class="home-header-img" *ngIf="cancel_cheque_img">
+          <!-- <img src="{{cancel_cheque_img}}" *ngIf="!base64cancelchequeImage" width="215" />  -->
+          <img src="{{ kycFormField.cancel_cheque_img }}" *ngIf="!base64cancelchequeImage" alt="Aadhar Card" width="215"/>
+          <img src="{{base64cancelchequeImage}}" *ngIf="base64cancelchequeImage" alt="Aadhar Card" width="215" />
+        </ion-col>
+        <ion-row class="app-icon-container ion-no-padding images_ion">
+          <ion-col class="ion-text-center image_button ion-no-padding">
+            <ion-button color="secondary" (click)="getcancelchequeImage()">
+              <ion-icon name="image-outline"></ion-icon>
+              <ion-label>Choose Cancel Cheque Image</ion-label>
+            </ion-button>
+            <br>
+            <small>Note : Max 4mb image</small>
+            <ion-col ><ion-input class="form-input" type="text" hidden value="{{cancel_cheque_img}}"></ion-input>
+              <!-- <img style="width: 100px;height: 100px;" *ngIf="base64pancardImage" src="{{base64pancardImage}}" alt="" class="image_container"> -->
+            </ion-col>
+          </ion-col>
+        </ion-row>
+        <hr>
+        <ion-button type="button" class="login-btn" color="secondary" expand="block" (click)="showKyc()">
+           Submit
+        </ion-button>
+      </div>
+
+      <div [hidden]=showKycFormdisone>
+        <ion-card>
+          <ion-card-content>
+            
+            <p>I understand that as per the new guidelines provided by Income Tax Department under the section 194R, I am required to furnish PAN Card details. I hereby confirm that I am submitting my PAN card details and company can pay 10% TDS on the benefits given to me. I give my consent to company to pay 10% TDS as per section 194R if the value of benefits given to me exceeds Rs. 20,000 and above during financial year.  
+            </p>
+            <p>I further declare that information provided by me about <strong color="primary" class="cb">PAN card, PAN Card Linked mobile number & Aadhaar Card</strong> submitted by me is true to the best of my knowledge and belief and nothing has been concealed therein.</p>
+            <p><strong>I am well aware of the fact that, if the information given by me is proved false/ not true, I will be liable for action as per the law. </strong></p>
+      
+              
+            <br>
+            <ion-list>
+              <ion-item class="bor">
+                <ion-label>I Agree Terms and Conditions</ion-label>
+                <ion-checkbox slot="start" [(ngModel)]="kycFormField.terms_condition" [ngModelOptions]="{standalone: true}" (ionChange)="checkKyc()" value="10"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+            <br>
+            <ion-button type="submit" expand="block" color="secondary" shape="round" slot="end" [disabled]="disabled">Submit</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div [hidden]=showKycFormdistwo>
+        <ion-card>
+          <ion-card-content>
+            
+            <p>I understand that as per the new guidelines provided by Income Tax Department under the section 194R, I am required to furnish PAN Card details. I hereby confirm that I do not posses PAN card and company can pay 22% TDS on the benefits given to me. I give my consent to company to pay 20% TDS as per section 194R if the value of benefits given to me exceeds Rs. 20,000 and above during financial year.   
+            </p>
+            <p>I further declare that information provided by me about PAN card, <strong color="primary" class="cb">PAN Card Linked mobile number & Aadhaar Card</strong> submitted by me is true to the best of my knowledge and belief and nothing has been concealed therein.
+            </p>
+            <p><strong>“I/ We declare that the information stated above is true and correct and I/ we further undertake to indemnify your entity for any costs, damages and/ or any penal consequences arising to you by relying on my/ our declaration.”</strong></p>
+      
+              
+            <br>
+            <ion-list>
+              <ion-item class="bor">
+                <ion-label>I Agree Terms and Conditions</ion-label>
+                <ion-checkbox slot="start" [(ngModel)]="kycFormField.terms_conditions" [ngModelOptions]="{standalone: true}" (ionChange)="checkKyctwo()" value="20"></ion-checkbox>
+              </ion-item>
+            </ion-list>
+            <br>
+            <ion-button type="submit" expand="block" color="secondary" shape="round" slot="end" [disabled]="disabled">Submit</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </div>
+  </form>
+    <br>
+  </ion-grid>
+</ion-content>

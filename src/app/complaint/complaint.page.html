@@ -1,0 +1,167 @@
+  <ion-content [fullscreen]="true">
+    <div class="ion-padding-top ion-padding-horizontal">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2" style="text-align: start;margin-left: -26px;">
+            <ion-menu-button></ion-menu-button>
+          </ion-col>
+          <ion-col size="8" style="text-align: center;">
+            <strong class="header" style="color:#131313;">{{ 'submit_ticket' | translate }}</strong>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="gap">
+      <form (ngSubmit)="ticketForm()">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-label class="ion-label">Select Issue Type</ion-label>
+              <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+                <ion-select [(ngModel)]="ticketFormField.ticket_category_id" name="ticket_category_id" placeholder="{{ 'select_issue_type' | translate }}" class="ion-select">
+                  <ion-select-option *ngFor="let item of issue_types;" value="{{item.id}}">{{item.category_name}}</ion-select-option>
+                </ion-select>          
+              </ion-item> 
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-label class="ion-label">Email</ion-label>
+              <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+                <ion-input type="text" [(ngModel)]="ticketFormField.your_email" name="your_email" placeholder="{{ 'enter_email' | translate }}" class="ion-input">
+                </ion-input>
+              </ion-item> 
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-label class="ion-label">Contact Number</ion-label>
+              <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+                <ion-input type="tel" [(ngModel)]="ticketFormField.your_contact_no" maxLength="10" name="your_contact_no" placeholder="{{ 'enter_con_number' | translate }}" class="ion-input">
+                </ion-input>
+              </ion-item> 
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-label class="ion-label">Message</ion-label>
+              <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+                <ion-textarea rows="5" autosize type="text" [(ngModel)]="ticketFormField.message" name="message" placeholder="{{ 'enter_msg' | translate }}" class="ion-textarea">
+                </ion-textarea>
+              </ion-item> 
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-button class="btn-create" type="submit">{{ 'submit' | translate }}</ion-button>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon color="light" name="arrow-back-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title >{{ 'submit_ticket' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-row class="app-icon-container">
+  </ion-row>
+  <ion-list>
+    <ion-grid>
+      <form (ngSubmit)="ticketForm()">
+        <ion-row>
+          <ion-item class="ion-margin-bottom" lines="none">
+            <ion-label ><ion-icon slot="start" name="list"></ion-icon></ion-label>
+            <ion-select [(ngModel)]="ticketFormField.ticket_category_id" name="ticket_category_id" placeholder="{{ 'select_issue_type' | translate }}">
+              <ion-select-option *ngFor="let item of issue_types;" value="{{item.id}}">{{item.category_name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom" lines="none">
+            <ion-label ><ion-icon slot="start" name="person"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="ticketFormField.your_email" name="your_email" placeholder="{{ 'enter_email' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+        
+        <ion-row>
+          <ion-item class="ion-margin-bottom" lines="none">
+            <ion-label ><ion-icon slot="start" name="call-sharp"></ion-icon></ion-label>
+            <ion-input type="tel" [(ngModel)]="ticketFormField.your_contact_no" maxLength="10" name="your_contact_no" placeholder="{{ 'enter_con_number' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+        
+        <ion-row>
+          <ion-item class="ion-margin-bottom" lines="none">
+              <ion-label ><ion-icon slot="start" name="chatbox-ellipses"></ion-icon></ion-label>
+              <ion-textarea rows="5" autosize class="textarea" type="text" [(ngModel)]="ticketFormField.message" name="message" placeholder="{{ 'enter_msg' | translate }}"></ion-textarea>
+          </ion-item>
+        </ion-row>
+
+        <ion-button type="submit" class="login-btn" color="secondary" expand="block" >
+          <ion-icon slot="start" name="send"></ion-icon> {{ 'submit' | translate }}
+        </ion-button>
+      </form>
+  </ion-grid>
+</ion-list>
+</ion-content> -->

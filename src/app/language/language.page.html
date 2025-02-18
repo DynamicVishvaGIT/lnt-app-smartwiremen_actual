@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon color="light" name="arrow-back-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ 'change_lang' | translate }} </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-radio-group [(ngModel)]="default_lang" (ionChange)="changeLang($event)">
+
+      <ion-item *ngFor="let l of langs">
+        <ion-label>{{l.title}}</ion-label>
+        <ion-radio color="primary" slot="end" value="{{l.value}}" ></ion-radio>
+      </ion-item>
+      
+    </ion-radio-group>
+  </ion-list>
+
+</ion-content>

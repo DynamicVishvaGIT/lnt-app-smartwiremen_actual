@@ -1,0 +1,183 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon color="light" name="arrow-back-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Project Lead Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="project_detail">
+    <ion-card>
+    
+      <ion-row class="card-heading" >
+        <ion-col size="10" >
+          <div class="ion-text-start"><strong >Project Details</strong></div>
+        </ion-col>
+      </ion-row>
+    
+      <ion-card-content >
+        <ion-row class="ion-margin-bottom">
+          <p>Project Name ::  <b>{{project_detail.pr_name}}</b></p>  
+          
+        </ion-row>
+  
+        <ion-row class="ion-margin-bottom">
+          <p>Address 1 :: <b>{{project_detail.add_1}}</b></p>
+        </ion-row>
+      
+  
+        <ion-row class="ion-margin-bottom">
+          <p>Address 2 :: <b>{{project_detail.add_2}}</b></p>
+        </ion-row>
+  
+       <ion-row class="ion-margin-bottom">
+         <p>Contact :: <b>{{project_detail.pr_contact}}</b></p>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+    <!-- </ion-card>
+    <ion-card>
+    
+      <ion-row class="card-heading" >
+        <ion-col size="10" >
+          <div class="ion-text-start"><strong >Project Influencer</strong></div>
+        </ion-col>
+       
+      </ion-row>
+    
+      <ion-card-content >
+       
+        <ion-row class="ion-margin-bottom">
+          <p>Contractor Name :: <b>{{project_detail.pr_contractor}}</b></p>
+        </ion-row>
+        <ion-row class="ion-margin-bottom">
+          <p>Builder Name :: <b>{{project_detail.pr_builder}}</b></p>
+        </ion-row>
+        <ion-row class="ion-margin-bottom">
+          <p>Developer Name :: <b>{{project_detail.pr_developer}}</b></p>
+         
+        </ion-row>
+        <ion-row class="ion-margin-bottom">
+          <p>Architect & Interior Designer Name :: <b>{{project_detail.pr_achitect}}</b></p>
+        </ion-row>
+        <ion-row class="ion-margin-bottom">
+          <p>Consultant Name :: <b>{{project_detail.pr_consultant}}</b></p>
+        </ion-row>
+        <ion-row class="ion-margin-bottom">
+          <p>House Owner Name :: <b>{{project_detail.pr_houseowner}}</b></p>
+       
+        </ion-row>
+        <ion-row class="ion-margin-bottom">
+          <p>Decision Maker Name :: <b>{{project_detail.pr_decmaker}}</b></p>
+        </ion-row>
+        <ion-row class="ion-margin-bottom">
+          <p>Retailer/Distributor Name :: <b>{{project_detail.pr_retailers_distributors}}</b></p>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-card>
+    
+      <ion-row class="card-heading" >
+        <ion-col size="10" >
+          <div class="ion-text-start"><strong >Approximate Value of Requirement</strong></div>
+        </ion-col>
+        
+      </ion-row>
+    
+      <ion-card-content >
+        <ion-row class="ion-margin-bottom">
+          <p>Oris Name :: <b>{{project_detail.Oris}}</b></p>
+        </ion-row>
+  
+        <ion-row class="ion-margin-bottom">
+          <p>Tripper :: <b>{{project_detail.tripper}}</b></p>
+        </ion-row>
+        <ion-row class="ion-margin-bottom">
+          <p>Englaze :: <b>{{project_detail.englaze}}</b></p>
+        </ion-row>
+  
+       <ion-row class="ion-margin-bottom">
+         <p>Entice :: <b>{{project_detail.entice}}</b></p>
+        </ion-row>
+       <ion-row class="ion-margin-bottom">
+         <p>Engem :: <b>{{project_detail.engem}}</b></p>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+    
+    
+    <ion-card>
+    
+      <ion-row class="card-heading" >
+        <ion-col size="10" >
+          <div class="ion-text-start"><strong >Project Status </strong></div>
+        </ion-col>
+       
+      </ion-row>
+    
+      <ion-card-content >
+        <div *ngIf="project_detail.pr_status=='Won'">
+        <ion-row class="ion-margin-bottom">
+          <p><b><b></b>{{project_detail.pr_status}}</b> </p> 
+           </ion-row>
+          <ion-row class="ion-margin-bottom">
+          <p>Name of Retailer/PTP/DSP :: <b>{{project_detail.won_ptp_dsp}}</b></p>  
+          </ion-row>
+          <ion-row class="ion-margin-bottom">
+          <p>Value :: <b>{{project_detail.won_value}}</b></p>  
+          </ion-row>
+          <ion-row class="ion-margin-bottom">
+          <p>Order Routed :: <b>{{project_detail.won_routed}}</b></p>  
+          </ion-row>
+        </div>
+        <div *ngIf="project_detail.pr_status=='Lost'">
+        <ion-row class="ion-margin-bottom">
+          <p><b><b></b>{{project_detail.pr_status}}</b> </p> 
+           </ion-row>
+          <ion-row class="ion-margin-bottom">
+          <p>Name of competitor who has won :: <b>{{project_detail.lost_name}}</b></p>  
+          </ion-row>
+          <ion-row class="ion-margin-bottom">
+          <p>Value :: <b>{{project_detail.lost_value}}</b></p>  
+          </ion-row>
+         
+        </div>
+        <div *ngIf="project_detail.pr_status=='In Progress'">
+        <ion-row class="ion-margin-bottom">
+          <p><b><b></b>{{project_detail.pr_status}}</b> </p> 
+           </ion-row>
+        </div>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content >
+          <ion-row class="ion-margin-bottom">
+          <p>Competitor Name :: <b>{{competition}}</b></p> 
+        </ion-row>
+  
+          <ion-row class="ion-margin-bottom"> 
+              <p>Project Classification :: <b>{{project_detail.pr_classification}}</b></p> 
+            </ion-row>
+          <ion-row class="ion-margin-bottom">
+            <p>Stage of Project :: <b>{{project_detail.pr_stage}}</b></p> 
+          </ion-row>
+          <ion-row class="ion-margin-bottom">
+            <p>Chances of Winning :: <b>{{project_detail.pr_chances}}</b></p> 
+          </ion-row>
+          <ion-row class="ion-margin-bottom">
+            <p>Tentative Order Transition Month :: <b>{{project_detail.order_month}}</b></p>
+           </ion-row>
+          <ion-row class="ion-margin-bottom"><p>Project Source :: <b>{{project_detail.pr_source}}</b></p> 
+          </ion-row>
+         
+        </ion-card-content>
+    </ion-card> -->
+  </div>
+  </ion-content>
+  

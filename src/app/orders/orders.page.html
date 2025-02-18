@@ -1,0 +1,106 @@
+<ion-content [fullscreen]="true">
+  <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
+    <ion-refresher-content ></ion-refresher-content>
+  </ion-refresher>
+  <div class="ion-padding-top ion-padding-horizontal">
+    <ion-grid>
+			<ion-row>
+				<ion-col size="2" style="text-align: start;margin-left: -26px;">
+					<ion-menu-button></ion-menu-button>
+				</ion-col>
+				<ion-col size="8" style="text-align: center;">
+					<strong class="header" style="color:#131313;">{{ 'orders' | translate }}</strong>
+				</ion-col>
+			</ion-row>
+    </ion-grid>
+  </div>
+	<ion-searchbar class="custom" name="search" [(ngModel)]="terms" placeholder="orders" mode="ios"></ion-searchbar>
+  <div class="order-card-gap">
+    <ion-card class="ion-margin-bottom order-card border-left-color" *ngFor="let item of items | search : terms; let i = index;" (click)="itemSelected(item)" mode="ios">
+      <ion-grid>   <!--style="margin-top: 11px;margin-left: 10px;"-->
+        <ion-row>
+          <ion-col size="12">
+            <ion-grid style="margin-top: -5px;">
+              <ion-row class="border-bottom">
+                <ion-col size="12" class="ion-text-wrap">
+                  <span style="font-size: medium;color:#fe4e4d;font-weight: 800;">{{ 'order_id' | translate }} : </span> <span style="font-size: medium;color:#131313;font-weight: 800;">#{{ item.id }}</span>
+                </ion-col>
+              </ion-row>
+              <ion-row class="text-header-align">
+                <ion-col size="12" style="text-align:start;">
+                  <span class="card-header">{{ item.gift_name }}</span>
+                </ion-col>
+              </ion-row>
+              <ion-row class="text-header-align" >
+                <ion-col size="12" style="text-align:start;">
+                  <span style="font-size: small;">{{ item.created_at |date:"dd MMM y, h:mm a"}}</span>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon color="light" name="arrow-back-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ 'orders' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
+    <ion-refresher-content >
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-card *ngFor="let item of items" mode="md" (click)="itemSelected(item)">
+    <ion-card-header>
+      <ion-card-subtitle color="dark">{{ 'order_id' | translate }} #{{ item.id }}</ion-card-subtitle>
+      <ion-card-subtitle ><b>{{ item.gift_name }}</b></ion-card-subtitle>
+      <ion-card-subtitle>{{ item.created_at |date:"dd MMM y, h:mm a"}}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+</ion-content> -->

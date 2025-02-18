@@ -1,0 +1,85 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon color="light" name="arrow-back-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Scan Counter Boy</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="ion-padding-top ion-padding-horizontal">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2" style="text-align: start;margin-left: -10px;" (click)="goBack()">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="8" style="text-align: center;">
+          <strong class="header" style="color:#131313;">Scan Counter Boy</strong>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <form (ngSubmit)="submitCounterBoyForm()">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-label class="ion-label">Select Country Boy</ion-label>
+          <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+            <ion-select name="counterboyid" [(ngModel)]="counterboyid" placeholder="Select Counter Boy" class="ion-select">
+              <!-- <ion-select-option >
+                None
+              </ion-select-option> -->
+              <ion-select-option value="{{counterboy.id}}" *ngFor="let counterboy of counterboy_list" >
+                {{counterboy.name}} 
+              </ion-select-option>
+            </ion-select>          
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-button class="btn-create" type="submit" style="width: 94%;margin-top: 10px;">{{ 'submit' | translate }}</ion-button>
+      </ion-row>
+    </ion-grid>
+    <!-- <ion-row>
+      <ion-item class="ion-margin-bottom" >
+        <ion-label ><ion-icon slot="start" name="list"></ion-icon></ion-label>
+        <ion-select placeholder="Select Counter Boy" [(ngModel)]="counterboyid" name="counterboyid">
+          <ion-select-option value="{{counterboy.id}}" *ngFor="let counterboy of counterboy_list">
+            {{counterboy.name}} 
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+    <ion-button class="btn-create" type="submit">{{ 'submit' | translate }}</ion-button> -->
+    <ion-row class="or">
+      <ion-col><h2>{{ 'or' | translate }}</h2></ion-col>
+    </ion-row>
+</form>
+  <br>
+  <ion-button class="btn-create"   (click)="scanCode()" color="secondary"><ion-icon style="margin-right: 8px;" name="scan-sharp"></ion-icon>{{ 'scan_code' | translate }}</ion-button>
+  <br>
+  <br>
+  <ion-card *ngIf="scannedCode">
+    <ion-card-content>
+      {{ 'result_form_scan' | translate }} : {{ scannedCode }}
+    </ion-card-content>
+  </ion-card>
+
+  <br>
+  <ion-card *ngIf="counterboy" style="width: 90%;">
+    <ion-card-content>
+    Last counter boy scanned   
+    <br>
+    <b>{{counterboy.name}} </b>
+    <br>
+    <b>{{counterboy.mobile_no}} </b>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

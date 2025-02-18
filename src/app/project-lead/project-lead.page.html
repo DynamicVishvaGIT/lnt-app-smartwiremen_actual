@@ -1,0 +1,186 @@
+<ion-content [fullscreen]="true" [ngStyle]="{'filter': showDiv ? 'brightness(0.5)' : 'brightness(1)','pointer-events':showDiv ? 'none':'all' }">
+  <div class="ion-padding-top ion-padding-horizontal">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2" style="text-align: start;margin-left: -10px;" (click)="goBack()">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </ion-col>
+        <ion-col size="8" style="text-align: center;">
+          <strong class="header" style="color:#131313;">Project Lead Form</strong>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <form >
+    <ion-card>
+      <ion-row class="card-heading" (click)="toggleSection('project_name')">
+        <ion-col size="10" >
+          <div class="ion-text-start"><strong >Project Details</strong></div>
+        </ion-col>
+        <ion-col size="2" class="ion-text-center" >
+          <div *ngIf="projectNameClicked"><ion-icon name="chevron-up-sharp" ></ion-icon></div>
+          <div *ngIf="!projectNameClicked"><ion-icon name="chevron-down-sharp" ></ion-icon></div>
+        </ion-col>
+      </ion-row>
+      <ion-card-content *ngIf="projectNameClicked">
+        <ion-row >  <!--class="ion-margin-bottom"-->
+          <ion-col size="12">
+            <ion-label class="required ion-label">Project Name</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <ion-input type="text" [(ngModel)]="productLeadFormField.pr_name" name="pr_name"  placeholder="Project Name" class="ion-input"></ion-input>
+            </ion-item>
+          </ion-col>
+          <!-- <ion-input type="text" [(ngModel)]="productLeadFormField.pr_name" name="pr_name"  placeholder="Project Name *"></ion-input> -->
+        </ion-row>
+        <ion-row >
+          <ion-col size="12">
+            <ion-label class="required ion-label">Address 1</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <ion-input type="text" [(ngModel)]="productLeadFormField.add_1" name="add_1" placeholder="Address 1" class="ion-input"></ion-input>
+            </ion-item>
+          </ion-col>
+          <!-- <ion-input type="text" [(ngModel)]="productLeadFormField.add_1" name="add_1" placeholder="Address 1 *"></ion-input> -->
+        </ion-row>
+        <ion-row >
+          <ion-col size="12">
+            <ion-label class="ion-label">Address 2</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <ion-input type="text" [(ngModel)]="productLeadFormField.add_2" name="add_2" placeholder="Address 2 " class="ion-input"></ion-input>
+            </ion-item>
+          </ion-col>
+          <!-- <ion-input type="text" [(ngModel)]="productLeadFormField.add_2" name="add_2" placeholder="Address 2 "></ion-input> -->
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">Contact</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <ion-input type="text" maxLength="10" [(ngModel)]="productLeadFormField.pr_contact" name="pr_contact" placeholder="Contact " class="ion-input"></ion-input>
+            </ion-item>
+          </ion-col>
+          <!-- <ion-input type="tel" maxLength="10" [(ngModel)]="productLeadFormField.pr_contact" name="pr_contact" placeholder="Contact * "></ion-input> -->
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+    <br>
+    <div class="submit-btn">
+      <ion-button color="secondary" (click)="productLeadForm()"    expand="block" >
+        {{'submit' |translate}}
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon color="light" name="arrow-back-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Project Lead Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngStyle]="{'filter': showDiv ? 'brightness(0.5)' : 'brightness(1)','pointer-events':showDiv ? 'none':'all' }" >
+  <form >
+  <ion-card>
+
+    <ion-row class="card-heading" (click)="toggleSection('project_name')">
+      <ion-col size="10" >
+        <div class="ion-text-start"><strong >Project Details</strong></div>
+      </ion-col>
+      <ion-col size="2" class="ion-text-center" >
+        <div *ngIf="projectNameClicked"><ion-icon name="chevron-up-sharp" ></ion-icon></div>
+        <div *ngIf="!projectNameClicked"><ion-icon name="chevron-down-sharp" ></ion-icon></div>
+      </ion-col>
+    </ion-row>
+  
+    <ion-card-content *ngIf="projectNameClicked">
+      <ion-row class="ion-margin-bottom">
+          <ion-input type="text" [(ngModel)]="productLeadFormField.pr_name" name="pr_name"  placeholder="Project Name *"></ion-input>
+      </ion-row>
+
+      <ion-row class="ion-margin-bottom">
+          <ion-input type="text" [(ngModel)]="productLeadFormField.add_1" name="add_1" placeholder="Address 1 *"></ion-input>
+      </ion-row>
+    
+
+      <ion-row class="ion-margin-bottom">
+          <ion-input type="text" [(ngModel)]="productLeadFormField.add_2" name="add_2" placeholder="Address 2 "></ion-input>
+      </ion-row>
+
+     <ion-row class="ion-margin-bottom">
+          <ion-input type="tel" maxLength="10" [(ngModel)]="productLeadFormField.pr_contact" name="pr_contact" placeholder="Contact * "></ion-input>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <br>
+  <div class="submit-btn">
+  <ion-button color="secondary" (click)="productLeadForm()"    expand="block" >
+    {{'submit' |translate}}
+   </ion-button>
+  </div>
+</form>
+
+</ion-content>
+<div *ngIf="showDiv" [@inOutAnimation] style="display: block;position: absolute;bottom: 0;background: #fff;width: 100%;">
+  <form (ngSubmit)="addLeadForm()">
+    <ion-item style="border-bottom: 0.5px solid;" lines="none"  class="ion-margin-bottom">
+      <ion-icon  style="font-weight: bold;
+      font-size: 22px;margin-top: 0 !important;
+      " name="close" (click)="closeDrawer('')"></ion-icon> <ion-title class="ion-text-center"  style="color: #000 !important;">  Add {{type |titlecase}}</ion-title>
+    </ion-item>
+  <ion-row class="ion-margin-bottom" style="padding: 0 18px;">
+    <ion-input type="tel" maxLength="10" [(ngModel)]="addLeadFormField.username"  name="username" placeholder="Username (Primary mobile no) *"></ion-input>
+  </ion-row>
+  <ion-row class="ion-margin-bottom" style="padding: 0 18px;">
+    <ion-input type="text" [(ngModel)]="addLeadFormField.first_name"  name="first_name" placeholder="First Name *"></ion-input>
+  </ion-row>
+  <ion-row class="ion-margin-bottom" style="padding: 0 18px;">
+    <ion-input type="text" [(ngModel)]="addLeadFormField.last_name"  name="last_name" placeholder="Last Name  *"></ion-input>
+  </ion-row>
+  <div class="submit-btn" style="padding: 0 10px;" >
+    <ion-button color="secondary" type="submit"  expand="block" >
+        Add
+     </ion-button>
+    </div>
+  </form>
+</div> -->

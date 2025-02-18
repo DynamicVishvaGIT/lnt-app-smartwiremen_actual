@@ -1,0 +1,3 @@
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore lnt_app.keystore app-release-unsigned.apk lnt_app
+
+zipalign -v 4 app-release-unsigned.apk lnt-0.4.4.apk    

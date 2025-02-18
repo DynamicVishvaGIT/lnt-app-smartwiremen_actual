@@ -1,0 +1,463 @@
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="ion-padding-top ion-padding-horizontal">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2" style="text-align: start;margin-left: -26px;">
+          <ion-menu-button></ion-menu-button>
+        </ion-col>
+        <ion-col size="8" style="text-align: center;">
+          <strong class="header" style="color:#131313;">{{ 'dashboard' | translate }}</strong>
+        </ion-col>
+        <ion-col size="2" style="text-align: end;" (click)="changeLanguage()">
+          <ion-icon name="language-outline" class="icon-circle" style="color:#ffff;margin-right: -37px;"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <!-- <ion-row class="heading-info">
+    <ion-col size="4"  class="home-header-img">
+      <img src="../assets/imgs/avatar2.png" *ngIf="!userInfo.avatar"/> 
+      <img src="{{ userInfo.avatar }}" *ngIf="userInfo.avatar"/> 
+    </ion-col>
+    <ion-col size="8"  class="home-header-info">
+      <h2>{{ 'welcome' | translate }} <span>{{userInfo.first_name}} {{userInfo.last_name}}</span></h2>
+      <h3>{{ 'your_level' | translate }} <span> {{userInfo.level}}</span></h3>
+      <h3>{{ 'your_points' | translate }} <span> {{userInfo.points}}</span></h3>
+    </ion-col>
+  </ion-row> -->
+  <div class="ion-padding-top ion-padding-horizontal gap">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="8" style="text-align: start;margin-top: -9px;">
+          <h6 style="color:#131313;font-weight: 200;">{{ 'Hey,' | translate }} <span style="color:#131313;font-weight: 500;">{{userInfo.first_name}} {{userInfo.last_name}}</span></h6>
+        </ion-col>
+        <ion-col size="4" class="home-header-img" style="text-align: end;">
+          <img src="../assets/imgs/avatar2.png" *ngIf="!userInfo.avatar"/> 
+          <img src="{{ userInfo.avatar }}" *ngIf="userInfo.avatar"/>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="ion-padding-top ion-padding-horizontal gap1">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="count-col3" >
+          <ion-row class="count-row-2">
+            <ion-col size="2" >
+              <img src="../../assets/imgs/Icon feather-trending-up.svg" alt="" class="img">
+              <!-- <ion-icon name="trending-up-outline" style="font-size: x-large;color: #ffd100;"></ion-icon> -->
+            </ion-col>
+            <ion-col size="4" style="margin-top: -4px;font-size: x-small;color:white;margin-left: -12px;" class="border-right">{{ 'your_level' | translate }} <br><span style="font-size: small;font-weight: 600;">{{userInfo.level}}</span></ion-col>
+            <ion-col size="3" style="text-align: center;">
+              <img src="../../assets/imgs/Icon feather-arrow-up-circle.svg" alt="" class="img">
+              <!-- <ion-icon name="trending-up-outline" style="font-size: x-large;color: #ffd100;"></ion-icon> -->
+            </ion-col>
+            <ion-col size="3" style="margin-top: -4px;font-size: x-small;color:white;margin-left: -20px;">{{ 'your_points' | translate }} <br><span style="font-size: small;font-weight: 600;">{{userInfo.points}}</span></ion-col>
+          </ion-row>
+          <!-- <p class="count-heading"><span class="count">9898</span> Presolved</p> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="banner-gap animated-display">
+    <ion-grid>
+      <ion-row align-self-center class="scroll">
+        <ion-col size="12">
+          <img src="assets/banner/banner.jpg" alt="" class="banner">
+        </ion-col>
+        <ion-col size="12">
+          <img src="assets/banner/banner.jpg" alt="" class="banner">
+        </ion-col>
+        <ion-col size="12">
+          <img src="assets/banner/banner.jpg" alt="" class="banner">
+        </ion-col>
+        <ion-col size="12">
+          <img src="assets/banner/banner.jpg" alt="" class="banner">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="gap">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-card class="card">
+            <ion-grid>
+              <ion-row >
+                <ion-col size="4" style="text-align: center;" class="col-height" (click)="goRedeem()">
+                  <div class="square-gift-container">
+                    <img src="../assets/imgs/Icon core-gift.svg" class="img-card">
+                  </div>
+                  <!-- <object type="image/svg+xml" data="../assets/imgs/Icon core-gift.svg" class="yellow-svg"></object> -->
+                  <!-- <br> -->
+                  <span class="tool-text"><b>{{ 'gift_redeem' | translate }}</b></span>
+                </ion-col>
+                <ion-col size="4" style="text-align: center;" class="col-height" (click)="goScancode()">
+                  <div class="square-barcode-container">
+                    <img src="../assets/imgs/Icon ion-ios-barcode.svg" class="img-card">
+                  </div>
+                  <!-- <br> -->
+                  <span class="tool-text"><b>{{ 'promocode' | translate }}</b></span>
+                </ion-col>
+                <ion-col size="4" style="text-align: center;" class="col-height" (click)="goScheme()">
+                  <div class="square-info-container">
+                    <img src="../assets/imgs/Icon ion-information.svg" class="img-card">
+                  </div>
+                  <!-- <br> -->
+                  <span class="tool-text"><b>{{ 'scheme_n_offers' | translate }}</b></span>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="banner-gap2 animated-display">
+    <ion-grid>
+      <ion-row align-self-center class="scroll">
+        <ion-col size="12">
+          <img src="assets/banner/health.jpg" alt="" class="banner">
+        </ion-col>
+        <ion-col size="12">
+          <img src="assets/banner/health.jpg" alt="" class="banner">
+        </ion-col>
+        <ion-col size="12">
+          <img src="assets/banner/health.jpg" alt="" class="banner">
+        </ion-col>
+        <ion-col size="12">
+          <img src="assets/banner/health.jpg" alt="" class="banner">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="gap">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-card class="card">
+            <ion-grid>
+              <ion-row >
+                <ion-col size="4" style="text-align: center;" class="col-height" (click)="goOrders()">
+                  <div class="square-cart-container">
+                    <img src="../assets/imgs/Icon core-cart.svg" class="img-card">
+                  </div>
+                  <!-- <br> -->
+                  <span class="tool-text"><b>{{ 'orders' | translate }}</b></span>
+                </ion-col>
+                <ion-col size="4" style="text-align: center;" class="col-height" (click)="goComplaint()">
+                  <div class="square-complaint-container">
+                    <img src="../assets/imgs/Icon fa-regular-rectangle-list.svg" class="img-card">
+                  </div>
+                  <!-- <br> -->
+                  <span class="tool-text"><b>{{ 'submit_ticket' | translate }}</b></span>
+                </ion-col>
+                <ion-col size="4" style="text-align: center;" class="col-height" (click)="goToProjectLead()">
+                  <div class="square-lead-container">
+                    <img src="../assets/imgs/Icon material-outline-featured-play-list.svg" class="img-card">
+                  </div>
+                  <!-- <br> -->
+                  <span class="tool-text"><b>{{ 'project_lead' | translate }}</b></span>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div style="margin-top:-36px;">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" (click)="goToQuiz()">
+          <ion-card class="card1">
+            <ion-card-header> 
+              <ion-card-title>
+                <div class="square-game-container">
+                  <img src="../assets/imgs/Icon ion-ios-game-controller-a-outline.svg" alt="" class="img-card">
+                </div>
+                <p style="color:black;font-size: x-small;margin-top: -27px;margin-left: 50px;">{{ 'game' | translate }}</p>
+              </ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <ion-col size="6" (click)="goToScanCounterBoy()">
+          <ion-card class="card2">
+            <ion-card-header> 
+              <ion-card-title>
+                <div class="square-cbarcode-container">
+                  <img src="../assets/imgs/Icon ion-ios-barcode counter boy.svg" alt="" class="img-card">
+                </div>
+                <p style="color:black;font-size: x-small;margin-top: -27px;margin-left: 50px;">Scan Counter Boy</p>
+              </ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        </ion-col>
+        <!-- <ion-col size="6" class="align-col" >
+          <ion-row class="align-row">
+            <ion-col size="2" >
+              <img src="../assets/imgs/home-icon-1.png" alt="" class="img-card1">
+            </ion-col>
+            <ion-col size="4" style="margin-top: 5px;font-size: x-small;color:black">{{ 'game' | translate }} </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="6" class="align-col" >
+          <ion-row class="align-row">
+            <ion-col size="2" >
+              <img src="../assets/imgs/home-icon-1.png" alt="" class="img-card1">
+            </ion-col>
+            <ion-col size="4" style="margin-top: 5px;font-size: x-small;color:black">{{ 'game' | translate }} </ion-col>
+          </ion-row>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div style="margin-top: 100px;">
+    <ion-fab horizontal="end" class="above-footer-fab">
+      <ion-fab-button class="custom-fab" size="small">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top" class="always-open">
+        <!-- <ion-fab-button class="custom-fab-list" (click)="callISO()" tooltip="Call">
+          <ion-icon name="call-outline" style="color:white"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button class="custom-fab-list" (click)="callCenter()">
+          <ion-icon name="call-outline" style="color:white"></ion-icon>
+        </ion-fab-button> -->
+        <div class="fab-button-with-text">
+          <span class="fab-text">Contact Sales Person</span>
+          <ion-fab-button class="custom-fab-list" (click)="callISO()" size="small">
+            <ion-icon name="call-outline" style="color:white"></ion-icon>
+          </ion-fab-button>
+        </div>
+        <div class="fab-button-with-text">
+          <span class="fab-text">Contact Call Center</span>
+          <ion-fab-button class="custom-fab-list" (click)="callCenter()" size="small" style="margin-bottom: -5px;">
+            <ion-icon name="call-outline" style="color:white"></ion-icon>
+          </ion-fab-button>
+        </div>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'dashboard' | translate }}</ion-title>
+  <ion-buttons slot="end">
+    <ion-button class="language-btn" (click)="changeLanguage()" fill="outline">{{'change_lang' | translate}}</ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+</ion-header>
+
+<ion-content >
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+<ion-row class="heading-info">
+  <ion-col size="4"  class="home-header-img">
+    <img src="../assets/imgs/avatar2.png" *ngIf="!userInfo.avatar"/> 
+    <img src="{{ userInfo.avatar }}" *ngIf="userInfo.avatar"/> 
+  </ion-col>
+  <ion-col size="8"  class="home-header-info">
+    <h2>{{ 'welcome' | translate }} <span>{{userInfo.first_name}} {{userInfo.last_name}}</span></h2>
+    <h3>{{ 'your_level' | translate }} <span> {{userInfo.level}}</span></h3>
+    <h3>{{ 'your_points' | translate }} <span> {{userInfo.points}}</span></h3>
+  </ion-col>
+</ion-row>
+
+
+<ion-list class="ion-padding list">
+<ion-row class="grid-list">
+  <ion-col size="6">
+    <div class="info" style="border-radius: 52px;padding: 4px !important;" (click)="goTds()" [hidden]=tdshidden>
+      <ion-chip color="secondary" style="width: 96%;">
+        <ion-icon name="document-text-outline"></ion-icon>
+        <ion-label>{{kyc_status.tds_value}}% TDS Slab</ion-label>
+      </ion-chip>
+    </div>
+  </ion-col> 
+  
+  <ion-col size="6">
+    <div class="info" style="border-radius: 52px;padding: 4px !important;" [hidden]=kychidden>
+      <ion-chip color="danger" style="width: 96%;">
+        <ion-icon name="close-circle-outline"></ion-icon>
+        <ion-label>{{kyc_status.kyc_status}}</ion-label>
+      </ion-chip>
+    </div>
+    <div class="info" style="border-radius: 52px;padding: 4px !important;" (click)="openDis()" [hidden]=kycnthidden>
+      <ion-chip color="danger" style="width: 96%;">
+        <ion-icon name="close-circle-outline"></ion-icon>
+        <ion-label>{{kyc_status.kyc_status}}</ion-label>
+      </ion-chip>
+    </div>
+    <div class="info" style="border-radius: 52px;padding: 4px !important;" (click)="goKyca()" [hidden]=kycahidden>
+      <ion-chip color="success" style="width: 96%;">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <ion-label>KYC Approved</ion-label>
+      </ion-chip>
+    </div>
+  </ion-col> 
+ <ion-col size="4" >
+   <div class="info" (click)="goRedeem()">
+     <img src="../assets/imgs/home-icon-1.png" /> 
+     <h4 style="margin-bottom: 23px;">{{ 'gift_redeem' | translate }}</h4>
+     <a >{{ 'view_details' | translate }} <ion-icon class="right-arrow" name="arrow-forward-sharp"></ion-icon></a>
+   </div>
+ </ion-col>
+ <ion-col size="4">
+   <div class="info" (click)="goScancode()">
+    <img src="../assets/imgs/home-icon-3.png" /> 
+     <h4>{{ 'promocode' | translate }}</h4>
+     <a >{{ 'view_details' | translate }} <ion-icon class="right-arrow" name="arrow-forward-sharp"></ion-icon></a>
+   </div>
+ </ion-col>
+<ion-col size="4"> 
+  <div class="info" (click)="goOrders()">
+   <img src="../assets/imgs/cart.png" /> 
+    <h4>{{ 'orders' | translate }}</h4>
+    <h4></h4>
+    <a >{{ 'view_details' | translate }} <ion-icon class="right-arrow" name="arrow-forward-sharp"></ion-icon></a>
+  </div>
+</ion-col>
+</ion-row>
+<ion-row class="grid-list">
+  <ion-col size="4">
+    <div class="info" (click)="goToDirectTransfer()">
+       <img src="../assets/imgs/money-transfer.png" /> 
+       <h4>{{ 'direct_transfer' | translate }}</h4>
+       <a >
+          {{ 'view_details' | translate }} 
+          <ion-icon class="right-arrow" name="arrow-forward-sharp"></ion-icon>
+       </a>
+    </div>
+ </ion-col>
+  <ion-col size="4"> 
+    <div class="info" (click)="goScheme()">
+     <img src="../assets/imgs/home-icon-2.png" /> 
+      <h4>{{ 'scheme_n_offers' | translate }}</h4>
+      <h4></h4>
+      <a >{{ 'view_details' | translate }} <ion-icon class="right-arrow" name="arrow-forward-sharp"></ion-icon></a>
+    </div>
+  </ion-col>
+ <ion-col size="4"> 
+  <div class="info" (click)="goComplaint()">
+   <img src="../assets/imgs/home-icon-4.png" /> 
+    <h4>{{ 'submit_ticket' | translate }}</h4>
+    <a >{{ 'view_details' | translate }} <ion-icon class="right-arrow" name="arrow-forward-sharp"></ion-icon></a>
+  </div>
+</ion-col>
+<ion-col size="4"> 
+  <div class="info" (click)="goProfile()">
+   <img src="../assets/imgs/user.png" /> 
+    <h4>{{ 'profile' | translate }}</h4>
+    <h4></h4>
+    <a >{{ 'view_details' | translate }} <ion-icon class="right-arrow" name="arrow-forward-sharp"></ion-icon></a>
+  </div>
+</ion-col>
+</ion-row>
+<ion-row class="grid-list"> 
+
+ <ion-col size="4"> 
+   <div class="info" (click)="goToProjectLead()">
+    <img src="../assets/imgs/home-icon-4.png" /> 
+     <h4>{{ 'project_lead' | translate }}</h4>
+     <h4></h4>
+     <a >{{ 'view_details' | translate }} <ion-icon class="right-arrow" name="arrow-forward-sharp"></ion-icon></a>
+   </div>
+ </ion-col>
+ <ion-col size="4"> 
+  <div class="info" (click)="goToQuiz()">
+    <img src="../assets/imgs/home-icon-1.png" /> 
+    <h4>{{ 'game' | translate }}</h4>
+    <a >{{ 'view_details' | translate }} <ion-icon class="right-arrow" name="arrow-forward-sharp"></ion-icon></a>
+  </div>
+</ion-col>
+<ion-col size="4"> 
+  <div class="info" (click)="goToScanCounterBoy()">
+   <img src="../assets/imgs/home-icon-3.png" /> 
+    <h4>Scan Counter Boy</h4>
+    <a >{{ 'view_details' | translate }} <ion-icon class="right-arrow" name="arrow-forward-sharp"></ion-icon></a>
+  </div>
+</ion-col>
+</ion-row>
+<br>
+
+  <ion-row>
+    <ion-col size="6" >
+      <ion-button expand="block" class="contact-btn ion-text-wrap"   (click)="callISO()">
+        Contact Sales Person
+      </ion-button>
+    </ion-col>
+    <ion-col size="6" >
+      <ion-button class="contact-btn ion-text-wrap"   expand="block" (click)="callCenter()">
+        Contact Call Center
+      </ion-button>
+      
+    </ion-col>
+  </ion-row>
+
+</ion-list>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</ion-content> -->
+

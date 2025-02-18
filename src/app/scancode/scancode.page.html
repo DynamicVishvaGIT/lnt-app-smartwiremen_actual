@@ -1,0 +1,192 @@
+<ion-content [fullscreen]="true">
+  <div class="ion-padding-top ion-padding-horizontal">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2" style="text-align: start;margin-left: -26px;">
+          <ion-menu-button></ion-menu-button>
+        </ion-col>
+        <ion-col size="8" style="text-align: center;">
+          <strong class="header" style="color:#131313;">{{ 'register_promo_code' | translate }}</strong>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="ion-padding-top ion-padding-horizontal gap">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" style="text-align: center;">
+          <div class="circle-promocode-container">
+            <img src="../../assets/imgs/Group 3631.svg" alt="" class="img">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="gap1">
+    <form (ngSubmit)="submitCounterBoyForm()">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">Select Country Boy</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <ion-select name="counterboyid" [(ngModel)]="counterboyid" placeholder="Select Counter Boy" class="ion-select">
+                <ion-select-option >
+                  None
+                </ion-select-option>
+                <ion-select-option value="{{counterboy.id}}" *ngFor="let counterboy of counterboy_list" >
+                  {{counterboy.name}} 
+                </ion-select-option>
+              </ion-select>          
+            </ion-item> 
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-button class="btn-create" type="submit" style="width: 94%;margin-top: 10px;">{{ 'submit' | translate }}</ion-button>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+  <div class="gap5">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <!-- <ion-label class="required ion-label">Enter Promo Code here</ion-label> -->
+          <ion-item lines="none" class="ion-item" style="margin-top: 8px;position: relative;">
+            <ion-input type="text" [(ngModel)]="inputCode" name="inputCode" placeholder="{{ 'enter_promo_code' | translate }}" class="ion-input" style="z-index: auto;">
+            </ion-input>
+            <ion-button fill="clear" class="apply-button" (click)="submitQrcodeForm()">{{ 'Apply' | translate }}</ion-button>
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="gap4">
+    <ion-row class="or">
+      <ion-col><h2>{{ 'or' | translate }}</h2></ion-col>
+    </ion-row>
+  </div>
+  <div class="gap3">
+    <ion-button class="btn-create" (click)="scanCode()" color="secondary"><ion-icon name="scan-sharp"></ion-icon>&nbsp;&nbsp;{{ 'scan_code' | translate }}</ion-button>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>
+      {{ 'register_promo_code' | translate }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form (ngSubmit)="submitCounterBoyForm()">
+    <ion-row>
+      <ion-item class="ion-margin-bottom" >
+        <ion-label ><ion-icon slot="start" name="list"></ion-icon></ion-label>
+        <ion-select placeholder="Select Counter Boy" [(ngModel)]="counterboyid" name="counterboyid">
+          <ion-select-option >
+            None
+          </ion-select-option>
+          <ion-select-option value="{{counterboy.id}}" *ngFor="let counterboy of counterboy_list" >
+            {{counterboy.name}} 
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+    <ion-button class="btn-create" type="submit">{{ 'submit' | translate }}</ion-button>
+  </form>
+  <br>
+  <hr>
+  <ion-card *ngIf="scannedCode">
+    <ion-card-content>
+      {{ 'result_form_scan' | translate }} : {{ scannedCode }}
+    </ion-card-content>
+  </ion-card>
+  <br>
+  <ion-card *ngIf="counterboy">
+    <ion-card-content>
+    Last counter boy scanned   
+    <br>
+    <b>{{counterboy.name}} </b>
+    <br>
+    <b>{{counterboy.mobile_no}} </b>
+    </ion-card-content>
+  </ion-card>
+  <br>
+  <form (ngSubmit)="submitQrcodeForm()">
+      <ion-input type="text" placeholder="{{ 'enter_promo_code' | translate }}" class="qr-input" [(ngModel)]="inputCode" name="inputCode">
+      </ion-input>
+    <ion-button class="btn-create"    type="submit"><ion-icon name="barcode-sharp"></ion-icon>{{ 'register' | translate }}</ion-button>
+  </form>
+  
+  <ion-row class="or">
+    <ion-col><h2>{{ 'or' | translate }}</h2></ion-col>
+  </ion-row>
+  <ion-button class="btn-create "    (click)="scanCode()" color="secondary"><ion-icon name="scan-sharp"></ion-icon>{{ 'scan_code' | translate }}</ion-button>
+
+  <ion-card *ngIf="scannedCode">
+    <ion-card-content>
+      {{ 'result_form_scan' | translate }} : {{ scannedCode }}
+    </ion-card-content>
+  </ion-card>
+</ion-content> -->

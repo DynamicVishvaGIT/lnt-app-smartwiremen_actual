@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Disclaimer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <!-- <p>I understand that as per the new guidelines provided by Income Tax Department under the section 194R, I am required to furnish PAN Card details. I hereby confirm that I am submitting my PAN card details and company can pay 10% TDS on the benefits given to me. I give my consent to company to pay 10% TDS as per section 194R if the value of benefits given to me exceeds Rs. 20,000 and above during financial year.</p>
+      <p>I further declare that information provided by me about <span class="cb">PAN card, PAN card linked mobile number & Aadhaar card</span> submitted by me is true to the best of my knowledge and belief and nothing has been concealed therein.</p>
+      <p>I am well aware of the fact that, if the information given by me is proved false/ not true, I will be liable for action as per the law. </p>
+       -->
+
+      <p>As per Section 194 R of the Finance Act, 2022, TDS will be applicable on benefits or perquisites if value of such benefits and perquisites exceeds Rs. 20,000/- in a financial year.</p>
+      <br>
+      <p>The rate of TDS will be </p>
+      
+      <ul>
+        <li>10% if PAN <span style="color: red;">No.</span> is available <span style="color: red;">and is not in Specified Category - Please provide copy of PAN Card</span></li>
+        <li>20% if PAN <span style="color: red;">No.</span> falls under specified category - <span style="color: red;">Please provide copy of PAN Card</span></li>
+        <li>20% if PAN card is not available</li>
+      </ul>
+      
+      <!-- <br> -->
+      <!-- <ion-list>
+        <ion-item class="bor">
+          <ion-label>I Agree Terms and Conditions</ion-label>
+          <ion-checkbox slot="start"></ion-checkbox>
+        </ion-item>
+      </ion-list> -->
+      <br>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" color="secondary" (click)="goKyc()" shape="round">Ok</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" color="danger" shape="round" (click)="dissmissModal()">Cancel</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

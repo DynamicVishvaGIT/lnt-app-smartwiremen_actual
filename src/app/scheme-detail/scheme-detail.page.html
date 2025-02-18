@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ scheme.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <img src="https://smartwiremen.com/storage/scheme_images/{{ scheme.scheme_image }}" *ngIf="scheme.scheme_image"/>
+  <ion-row  *ngIf="scheme.scheme_pdf">
+    <ion-col size="12" class="ion-text-right" class="ion-no-padding">
+      <ion-button color="secondary"  size="small" (click)="showPDF()"><ion-icon name="cloud-download-sharp"></ion-icon> Scheme Information PDF</ion-button>
+    </ion-col>
+  </ion-row>
+  <p style="white-space: pre-line; margin-top: 0px;">
+		{{ scheme.description }}
+	</p>
+</ion-content>

@@ -1,0 +1,133 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon color="light" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>TDS </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <br> -->
+  
+  <ion-row class="heading-info" style="background: #09467a;">
+    <ion-col size="4"  class="home-header-img">
+      <img src="../assets/imgs/avatar2.png" /> 
+      <!-- <img src="" />  -->
+    </ion-col>
+    <ion-col size="8"  class="home-header-info">
+      <br>
+      <h3>Total Points <span> {{userInfo.points}}</span></h3>
+      <h3>TDS Points <span> {{fetchtdspoint.tdsbalance}}</span></h3>
+      <!-- <h3>TDS Points <span> 800</span></h3> -->
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <br><br>
+    <ion-col size="12">
+      <ion-row>
+        <ion-col size="6">
+          <div class="info" style="border-radius: 52px;padding: 4px !important;" (click)="goTds()">
+            <ion-chip color="secondary" style="width: 96%;">
+              <ion-icon name="document-text-outline"></ion-icon>
+              <ion-label>{{kyc_status.tds_value}}% TDS Slab</ion-label>
+            </ion-chip>
+          </div>
+        </ion-col> 
+        <ion-col size="6">
+          <div class="info" style="border-radius: 52px;padding: 4px !important;" [hidden]=kychidden>
+            <!-- <h2>TDS Verified<span></span></h2> -->
+            <ion-chip color="danger" style="width: 96%;">
+              <ion-icon name="close-circle-outline"></ion-icon>
+              <ion-label>{{kyc_status.kyc_status}}</ion-label>
+            </ion-chip>
+          </div>
+          <div class="info" style="border-radius: 52px;padding: 4px !important;" (click)="goBack()" [hidden]=kycnthidden>
+            <!-- <h2>TDS Verified<span></span></h2> -->
+            <ion-chip color="danger" style="width: 96%;">
+              <ion-icon name="close-circle-outline"></ion-icon>
+              <ion-label>{{kyc_status.kyc_status}}</ion-label>
+            </ion-chip>
+          </div>
+          <div class="info" style="border-radius: 52px;padding: 4px !important;" (click)="goKyca()" [hidden]=kycahidden>
+            <!-- <h2>TDS Verified<span></span></h2> -->
+            <ion-chip color="success" style="width: 96%;">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+              <ion-label>KYC Approved</ion-label>
+            </ion-chip>
+          </div>
+        </ion-col> 
+      </ion-row>
+    </ion-col>
+    <br>
+  </ion-row> 
+  <ion-row>
+    <ion-col size="12">
+      <ion-list>
+        <ion-list-header> 
+          <h5>TDS Certificate</h5>
+        </ion-list-header>
+        <div *ngIf="fetchtds?.length > 0; else loggedOut">
+        <ion-card  *ngFor="let tds of fetchtds">
+          <!-- <a class="ion-home color-primary item" href="https://smartwiremen.com/storage/tdscert/{{tds.quarterly_pdf}}" (click)=" return false;">  -->
+            <ion-item (click)="openTDS(tds)">
+                <ion-avatar slot="start">
+                  <img src="../assets/imgs/download.png" style="border-radius: 0;"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>{{tds.date_quarterly}} </h2>
+                  <h3>Download TDS Certificate here</h3>
+                </ion-label>
+            </ion-item>
+          <!-- </a> -->
+         </ion-card>
+        </div>
+        <ng-template #loggedOut>
+          <ion-card>
+            <ion-item>
+              <ion-label>
+                <h3>No TDS Certificate available</h3>
+              </ion-label>
+            </ion-item>
+          </ion-card>
+        </ng-template>
+        <!--<ion-card (click)="downTds()">
+          <ion-item>
+              <ion-avatar slot="start">
+                <img src="../assets/imgs/download.png" style="border-radius: 0;"/>
+              </ion-avatar>
+              <ion-label>
+                <h2>Apr - Jun 2022</h2>
+                <h3>Download TDS Certificate here</h3>
+              </ion-label>
+          </ion-item>
+        </ion-card>
+        <ion-card (click)="downTds()">
+          <ion-item>
+              <ion-avatar slot="start">
+                <img src="../assets/imgs/download.png" style="border-radius: 0;"/>
+              </ion-avatar>
+              <ion-label>
+                <h2>Jul - Sep 2022</h2>
+                <h3>Download TDS Certificate here</h3>
+              </ion-label>
+          </ion-item>
+        </ion-card>
+        <ion-card (click)="downTds()">
+          <ion-item>
+              <ion-avatar slot="start">
+                <img src="../assets/imgs/download.png" style="border-radius: 0;"/>
+              </ion-avatar>
+              <ion-label>
+                <h2>Oct - Des 2022</h2>
+                <h3>Download TDS Certificate here</h3>
+              </ion-label>
+          </ion-item>
+        </ion-card> -->
+
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-content>

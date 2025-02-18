@@ -1,0 +1,788 @@
+<ion-content [fullscreen]="true">
+  <div class="ion-padding-top ion-padding-horizontal">
+    <ion-grid>
+			<ion-row>
+				<ion-col size="2" style="text-align: start;margin-left: -26px;">
+					<ion-menu-button></ion-menu-button>
+				</ion-col>
+				<ion-col size="8" style="text-align: center;">
+					<strong class="header" style="color:#131313;">{{ (!showEditProfile || showChangePhoto)?'Profile':'edit_profile' | translate }}</strong>
+				</ion-col>
+        <ion-col size="2" style="text-align: end;" [hidden]="!showEditProfile && !showChangePhoto" (click)="showProfile()">
+          <ion-icon name="close-outline" style="color:#131313;margin-right: -37px;font-size: x-large;"></ion-icon>
+        </ion-col>
+			</ion-row>
+    </ion-grid>
+  </div>
+  <div [hidden]="showEditProfile || showChangePhoto">
+    <ion-row>
+      <ion-col size="4" class="ion-text-center home-header-img" (click)="showPhoto(false)">
+         <img src="{{ displayProfileField.avatar }}" class="avtar-rounded" *ngIf="displayProfileField.avatar" width="215" height="215">
+      </ion-col>
+      <ion-col>
+        <p class="name-text">{{ displayProfileField.first_name }} {{ displayProfileField.last_name }}</p>
+        <p class="mail-text">{{ displayProfileField.email }}</p>
+        <ion-button class="login-btn" color="primary" (click)="showEdit()">{{ 'edit_profile' | translate }}</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <div class="ion-padding" style="margin-top: 4%;" [hidden]="showEditProfile || showChangePhoto">
+    <ion-segment value="active">
+      <ion-segment-button mode="ios" value="active" (click)="statusTab('personal')">
+        <ion-label>Personal Info</ion-label>
+      </ion-segment-button>
+      <ion-segment-button mode="ios" value="inactive" (click)="statusTab('other')">
+        <ion-label>Other Info</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [hidden]="showEditProfile || showChangePhoto" class="gap">
+    <ion-grid *ngIf="status=='personal'">
+      <ion-card >
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" class="header-align">
+                <ion-icon name="call-outline" class="icon-style" size="medium" color="secondary"></ion-icon>
+                <div class="text-container">
+                  <span>{{ 'mobile_no' | translate }}</span>
+                  <span>{{ displayProfileField.username?displayProfileField.username:'NA' }}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" class="header-align">
+                <ion-icon name="gift-outline" class="icon-style" size="medium" color="secondary"></ion-icon>
+                <div class="text-container">
+                  <span>{{ 'date_of_birth' | translate }}</span>
+                  <span>{{ displayProfileField.date_of_birth?displayProfileField.date_of_birth:'NA' }}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" class="header-align">
+                <ion-icon name="briefcase-outline" class="icon-style" size="medium" color="secondary"></ion-icon>
+                <div class="text-container">
+                  <span>{{ 'profession' | translate }}</span>
+                  <span>{{ displayProfileField.profession?displayProfileField.profession:'NA' }}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" class="header-align">
+                <ion-icon name="briefcase-outline" class="icon-style" size="medium" color="secondary"></ion-icon>
+                <div class="text-container">
+                  <span>{{ 'professional_qualification' | translate }}</span>
+                  <span>{{ displayProfileField.professional_qualification?displayProfileField.professional_qualification:'NA' }}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" class="header-align">
+                <ion-icon name="id-card-outline" class="icon-style" size="medium" color="secondary"></ion-icon>
+                <div class="text-container">
+                  <span>{{ 'id_proof' | translate }}</span>
+                  <span>{{ displayProfileField.id_proof?displayProfileField.id_proof:'NA' }}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" class="header-align">
+                <ion-icon name="location-outline" class="icon-style" size="medium" color="secondary"></ion-icon>
+                <div class="text-container">
+                  <span>Address</span>
+                  <span>{{ displayProfileField.address_line_1+','+displayProfileField.address_line_2+','+displayProfileField.address_line_3+','+
+                    displayProfileField.city_name+','+ displayProfileField.state_name+'-'+displayProfileField.pincode}}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ion-grid>
+    <ion-grid *ngIf="status=='other'">
+      <ion-card>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" class="header-align">
+                <ion-icon name="person-outline" class="icon-style" size="medium" color="secondary"></ion-icon>
+                <div class="text-container">
+                  <span>{{ 'account_holder_name' | translate }}</span>
+                  <span>{{ displayProfileField.account_holder_name?displayProfileField.account_holder_name:'NA' }}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" class="header-align">
+                <ion-icon name="business-outline" class="icon-style" size="medium" color="secondary"></ion-icon>
+                <div class="text-container">
+                  <span>{{ 'bank_name' | translate }}</span>
+                  <span>{{ displayProfileField.bank_name?displayProfileField.bank_name:'NA' }}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" class="header-align">
+                <ion-icon name="business-outline" class="icon-style" size="medium" color="secondary"></ion-icon>
+                <div class="text-container">
+                  <span>{{ 'branch_name' | translate }}</span>
+                  <span>{{ displayProfileField.branch_name?displayProfileField.branch_name:'NA' }}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" class="header-align">
+                <ion-icon name="wallet-outline" class="icon-style" size="medium" color="secondary"></ion-icon>
+                <div class="text-container">
+                  <span>{{ 'account_number' | translate }}</span>
+                  <span>{{ displayProfileField.account_number?displayProfileField.account_number:'NA' }}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" class="header-align">
+                <ion-icon name="journal-outline" class="icon-style" size="medium" color="secondary"></ion-icon>
+                <div class="text-container">
+                  <span>{{ 'ifsc_code' | translate }}</span>
+                  <span>{{ displayProfileField.ifsc_code?displayProfileField.ifsc_code:'NA' }}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12" class="header-align">
+                <ion-icon name="card-outline" class="icon-style" size="medium" color="secondary"></ion-icon>
+                <div class="text-container">
+                  <span>{{ 'upi_id' | translate }}</span>
+                  <span>{{ displayProfileField.upi_id?displayProfileField.upi_id:'NA' }}</span>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ion-grid>
+  </div>
+  <div [hidden]="showEditProfile || !showChangePhoto">
+    <ion-grid >
+      <ion-row class="app-icon-container ion-no-padding">
+        <ion-col class="ion-text-center">
+          <img src="{{ displayProfileField.account_image }}" *ngIf="!base64Image" alt="Avatar" width="215"/>
+          <!-- <img src="{{ displayProfileField.avatar }}" *ngIf="!base64Image" alt="Avatar" width="215"/> -->
+          <img src="{{base64Image}}" *ngIf="base64Image" alt="Avatar" width="215" />
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button  color="secondary" (click)="takePhoto()">{{ 'take_photo' | translate }}</ion-button>
+          <ion-button  color="secondary" (click)="getImage()">{{ 'select_image' | translate }}</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button  color="secondary" (click)="uploadImage()">{{ 'upload_image' | translate }}</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div [hidden]="!showChangePhoto || !isBankUpload">
+    <ion-grid>
+      <ion-row class="app-icon-container ion-no-padding">
+        <ion-col class="ion-text-center">
+          <img src="{{ displayProfileField.avatar }}" *ngIf="!base64Image" alt="Avatar" width="215"/>
+          <img src="{{base64Image}}" *ngIf="base64Image" alt="Avatar" width="215" />
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button  color="secondary" (click)="takePhoto()">{{ 'take_photo' | translate }}</ion-button>
+          <ion-button  color="secondary" (click)="getImage()">{{ 'select_image' | translate }}</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button  color="secondary" (click)="uploadImage()">{{ 'upload_image' | translate }}</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </div>
+  <div mode="ios" class="content-align" [hidden]="!showEditProfile || showChangePhoto ">
+    <ion-grid>
+      <form *ngIf="profileFormField" (ngSubmit)="profileForm()">
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'first_name' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon slot="start" name="person"></ion-icon></ion-label> -->
+              <ion-input type="text" [(ngModel)]="profileFormField.first_name" name="first_name" placeholder="{{ 'enter_first_name' | translate }}" class="ion-input"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'last_name' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon slot="start" name="person"></ion-icon></ion-label> -->
+              <ion-input type="text" [(ngModel)]="profileFormField.last_name" name="last_name" placeholder="{{ 'enter_last_name' | translate }}" class="ion-input"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'date_of_birth' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-icon slot="start" name="calendar-sharp" style="margin-right: 10px;"></ion-icon><ion-label style="color: darkgray;" ><span>{{ 'date_of_birth' | translate }}</span></ion-label> -->
+              <ion-datetime  displayFormat="DD-MM-YYYY" [max]="today"  [(ngModel)]="profileFormField.date_of_birth" name="date_of_birth" class="ion-datetime"></ion-datetime>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'email' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon  slot="start" name="mail"></ion-icon></ion-label> -->
+              <ion-input type="text" [(ngModel)]="profileFormField.email" name="email" placeholder="{{ 'enter_email' | translate }}" class="ion-input"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'id_proof' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon slot="start" name="pencil-sharp"></ion-icon></ion-label> -->
+              <ion-input type="text" [(ngModel)]="profileFormField.id_proof" name="id_proof" placeholder="{{ 'enter_id_proof' | translate }}"  class="ion-input"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="profileFormField.profession">
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'profession' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon slot="start" name="list"></ion-icon></ion-label> -->
+              <ion-select *ngIf="profileFormField.profession" [(ngModel)]="profileFormField.profession" name="profession" placeholder="{{ 'select_profession' | translate }}" class="ion-select">
+                  <ion-select-option *ngFor="let item of professions;" value="{{item.id}}">{{item.name}}</ion-select-option>
+              </ion-select>            
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="profileFormField.professional_qualification">
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'professional_qualification' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon slot="start" name="list"></ion-icon></ion-label> -->
+              <ion-select *ngIf="profileFormField.professional_qualification" [(ngModel)]="profileFormField.professional_qualification" name="professional_qualification" placeholder="{{ 'select_professional_qualification' | translate }}" class="ion-select">
+                <ion-select-option *ngFor="let item of professional_qualifications;" value="{{item.id}}">{{item.name}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'state' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon name="list"></ion-icon></ion-label> -->
+                <ionic-selectable
+                    name="state"
+                    placeholder="{{ 'select_state' | translate }}"
+                    searchPlaceholder="{{ 'search_state' | translate }}"
+                    [(ngModel)]="profileFormField.state"
+                    [items]="states"
+                    itemValueField="id"
+                    itemTextField="name"
+                    [canSearch]="true"
+                    (onChange)="changeState($event)"
+                    class="ion-select-profile">
+                </ionic-selectable>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'city' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon name="list"></ion-icon></ion-label> -->
+                <ionic-selectable
+                    #cityComponent
+                    name="city"
+                    placeholder="{{ 'select_city' | translate }}"
+                    searchPlaceholder="{{ 'search_city' | translate }}"
+                    [(ngModel)]="profileFormField.city"
+                    [items]="cities"
+                    itemValueField="id"
+                    itemTextField="name"
+                    [canSearch]="true"
+                    (onChange)="changeCity($event)"
+                    class="ion-select-profile">
+                </ionic-selectable>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'address_line_1' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+              <ion-input type="text" [(ngModel)]="profileFormField.address_line_1" name="address_line_1" placeholder="{{ 'enter_address_line_1' | translate }}" class="ion-input"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'address_line_2' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+              <ion-input type="text" class="ion-input" [(ngModel)]="profileFormField.address_line_2" name="address_line_2" placeholder="{{ 'enter_address_line_2' | translate }}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'address_line_3' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+              <ion-input type="text" class="ion-input" [(ngModel)]="profileFormField.address_line_3" name="address_line_3" placeholder="{{ 'enter_address_line_3' | translate }}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'pincode' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+              <ion-input type="number" class="ion-input" maxLength="6" [(ngModel)]="profileFormField.pincode" name="pincode" placeholder="{{ 'enter_pincode' | translate }}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'account_holder_name' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+              <ion-input type="text" class="ion-input" [(ngModel)]="profileFormField.account_holder_name"  name="account_holder_name" placeholder="{{ 'account_holder_name' | translate }}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'bank_name' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+              <ion-input type="text" class="ion-input" [(ngModel)]="profileFormField.bank_name"  name="bank_name" placeholder="{{ 'bank_name' | translate }}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'branch_name' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+              <ion-input type="text" class="ion-input" [(ngModel)]="profileFormField.branch_name"  name="branch_name" placeholder="{{ 'branch_name' | translate }}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'account_number' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+              <ion-input type="text" class="ion-input" [(ngModel)]="profileFormField.account_number"  name="account_number" placeholder="{{ 'account_number' | translate }}"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'ifsc_code' | translate }} e.g SBIN0123456</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+              <ion-input type="text" class="ion-input" [(ngModel)]="profileFormField.ifsc_code"  name="ifsc_code" placeholder="{{ 'ifsc_code' | translate }} e.g SBIN0123456"></ion-input>
+            </ion-item></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'upi_id' | translate }} e.g 1234567890@sbi</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">
+              <!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+              <ion-input type="text" class="ion-input" [(ngModel)]="profileFormField.upi_id" name="upi_id" placeholder="{{ 'upi_id' | translate }} e.g 1234567890@sbi" ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row> 
+        <ion-row>
+          <ion-col size="12">
+            <ion-label class="required ion-label">{{ 'upload_bank_details' | translate }}</ion-label>
+            <ion-item lines="none" class="ion-item" style="margin-top: 8px;">   <!--class="ion-margin-bottom"-->
+              <!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+              <ion-input type="text" class="ion-input"  placeholder="{{ 'upload_bank_details' | translate }}"  (click)="showPhoto(true)"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button type="submit" class="update-btn" color="secondary">{{ 'update' | translate }}
+              <!-- <ion-icon name="send" style="margin-right: 8px;"></ion-icon>  -->
+            </ion-button>
+          </ion-col>
+        </ion-row>
+    </form>
+  </ion-grid>
+  </div>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end" [hidden]="!showEditProfile && !showChangePhoto">
+      <ion-button (click)="showProfile()" color="light" class="logoutbtn" fill="outline">{{ 'cancel' | translate }}</ion-button>
+    </ion-buttons>
+    <ion-title>{{ 'profile' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div [hidden]="showEditProfile || showChangePhoto">
+  
+    <ion-row class="app-icon-container">
+      <ion-col class="ion-text-center">
+         <img src="{{ displayProfileField.avatar }}" class="avtar-rounded" *ngIf="displayProfileField.avatar" width="215" height="215">
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-no-padding">
+      <ion-col class="ion-text-center">
+        <ion-button  color="secondary" (click)="showPhoto(false)">{{ 'change_photo' | translate }}</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </div>
+
+  <ion-list>
+    <ion-grid [hidden]="showEditProfile || showChangePhoto">
+        <ion-card >
+          <ion-card-content>
+            <ion-row class="profile-detail-row">
+              <ion-col size="4" >{{ 'mobile_no' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.username }}</ion-col>
+
+              <ion-col size="4" >{{ 'first_name' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.first_name }}</ion-col>
+
+              <ion-col size="4" >{{ 'last_name' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.last_name }}</ion-col>
+
+              <ion-col size="4" >{{ 'date_of_birth' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.date_of_birth }}</ion-col>
+
+              <ion-col size="4" >{{ 'email' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.email }}</ion-col>
+
+              <ion-col size="4" >{{ 'id_proof' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.id_proof }}</ion-col>
+              
+              <ion-col size="4" >{{ 'profession' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.profession }}</ion-col>
+
+              <ion-col size="4" >{{ 'professional_qualification' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.professional_qualification }}</ion-col>
+
+              <ion-col size="4" >{{ 'state' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.state_name }}</ion-col>
+
+              <ion-col size="4" >{{ 'city' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.city_name }}</ion-col>
+
+              <ion-col size="4" >{{ 'address_line_1' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.address_line_1 }}</ion-col>
+
+              <ion-col size="4" >{{ 'address_line_2' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.address_line_2 }}</ion-col>
+
+              <ion-col size="4" >{{ 'address_line_3' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.address_line_3 }}</ion-col>
+              
+              <ion-col size="4" >{{ 'pincode' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.pincode }}</ion-col>
+
+              <ion-col size="4" >{{ 'account_holder_name' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.account_holder_name ? displayProfileField.account_holder_name : 'NA' }}</ion-col>
+
+              <ion-col size="4" >{{ 'bank_name' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.bank_name ? displayProfileField.bank_name : 'NA' }}</ion-col>
+
+              <ion-col size="4" >{{ 'branch_name' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.branch_name ? displayProfileField.branch_name : 'NA' }}</ion-col>
+
+              <ion-col size="4" >{{ 'account_number' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.account_number ? displayProfileField.account_number : 'NA' }}</ion-col>
+
+              <ion-col size="4" >{{ 'ifsc_code' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.ifsc_code ? displayProfileField.ifsc_code : 'NA' }}</ion-col>
+
+              <ion-col size="4" >{{ 'upi_id' | translate }}</ion-col>
+              <ion-col size="8" >: {{ displayProfileField.upi_id ? displayProfileField.upi_id : 'NA' }}</ion-col>
+              
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-button class="login-btn" color="secondary"  expand="block" (click)="showEdit()">
+          <ion-icon slot="start" name="create-outline"></ion-icon> {{ 'edit_profile' | translate }}
+        </ion-button>
+        
+        
+
+  </ion-grid>
+    
+    <ion-grid [hidden]="showEditProfile || !showChangePhoto">
+
+      <ion-row class="app-icon-container ion-no-padding">
+        <ion-col class="ion-text-center">
+          <img src="{{ displayProfileField.account_image }}" *ngIf="!base64Image" alt="Avatar" width="215"/>
+          <img src="{{base64Image}}" *ngIf="base64Image" alt="Avatar" width="215" />
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button  color="secondary" (click)="takePhoto()">{{ 'take_photo' | translate }}</ion-button>
+          <ion-button  color="secondary" (click)="getImage()">{{ 'select_image' | translate }}</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button  color="secondary" (click)="uploadImage()">{{ 'upload_image' | translate }}</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+    <ion-grid [hidden]="!showChangePhoto || !isBankUpload">
+
+      <ion-row class="app-icon-container ion-no-padding">
+        <ion-col class="ion-text-center">
+          <img src="{{ this.displayProfileField.avatar }}" *ngIf="!base64Image" alt="Avatar" width="215"/>
+          <img src="{{base64Image}}" *ngIf="base64Image" alt="Avatar" width="215" />
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button  color="secondary" (click)="takePhoto()">{{ 'take_photo' | translate }}</ion-button>
+          <ion-button  color="secondary" (click)="getImage()">{{ 'select_image' | translate }}</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button  color="secondary" (click)="uploadImage()">{{ 'upload_image' | translate }}</ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+    <ion-grid [hidden]="!showEditProfile || showChangePhoto ">
+
+      <form *ngIf="profileFormField" (ngSubmit)="profileForm()">
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon slot="start" name="person"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.first_name" name="first_name" placeholder="{{ 'enter_first_name' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon slot="start" name="person"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.last_name" name="last_name" placeholder="{{ 'enter_last_name' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom" >
+            <ion-icon slot="start" name="calendar-sharp" style="margin-right: 10px;"></ion-icon><ion-label style="color: darkgray;" ><span>{{ 'date_of_birth' | translate }}</span></ion-label>
+            <ion-datetime  displayFormat="DD-MM-YYYY" [max]="today"  [(ngModel)]="profileFormField.date_of_birth" name="date_of_birth" ></ion-datetime>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon  slot="start" name="mail"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.email" name="email" placeholder="{{ 'enter_email' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon slot="start" name="pencil-sharp"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.id_proof" name="id_proof" placeholder="{{ 'enter_id_proof' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+        
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon slot="start" name="list"></ion-icon></ion-label>
+            <ion-select *ngIf="profileFormField.profession" [(ngModel)]="profileFormField.profession" name="profession" placeholder="{{ 'select_profession' | translate }}">
+                <ion-select-option *ngFor="let item of professions;" value="{{item.id}}">{{item.name}}</ion-select-option>
+            </ion-select>            
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon slot="start" name="list"></ion-icon></ion-label>
+            <ion-select *ngIf="profileFormField.professional_qualification" [(ngModel)]="profileFormField.professional_qualification" name="professional_qualification" placeholder="{{ 'select_professional_qualification' | translate }}">
+              <ion-select-option *ngFor="let item of professional_qualifications;" value="{{item.id}}">{{item.name}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="list"></ion-icon></ion-label>
+              <ionic-selectable
+                  name="state"
+                  
+                  placeholder="{{ 'select_state' | translate }}"
+                  searchPlaceholder="{{ 'search_state' | translate }}"
+                  [(ngModel)]="profileFormField.state"
+                  [items]="states"
+                  itemValueField="id"
+                  itemTextField="name"
+                  [canSearch]="true"
+                  (onChange)="changeState($event)">
+              </ionic-selectable>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="list"></ion-icon></ion-label>
+              <ionic-selectable
+                  #cityComponent
+                  name="city"
+                  placeholder="{{ 'select_city' | translate }}"
+                  searchPlaceholder="{{ 'search_city' | translate }}"
+                  [(ngModel)]="profileFormField.city"
+                  [items]="cities"
+                  itemValueField="id"
+                  itemTextField="name"
+                  [canSearch]="true"
+                  (onChange)="changeCity($event)"
+                  
+                  >
+                 
+              </ionic-selectable>
+          </ion-item>
+        </ion-row>
+
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.address_line_1" name="address_line_1" placeholder="{{ 'enter_address_line_1' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+     
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.address_line_2" name="address_line_2" placeholder="{{ 'enter_address_line_2' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.address_line_3" name="address_line_3" placeholder="{{ 'enter_address_line_3' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+            <ion-input type="number" maxLength="6" [(ngModel)]="profileFormField.pincode" name="pincode" placeholder="{{ 'enter_pincode' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.account_holder_name"  name="account_holder_name" placeholder="{{ 'account_holder_name' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.bank_name"  name="bank_name" placeholder="{{ 'bank_name' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.branch_name"  name="branch_name" placeholder="{{ 'branch_name' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.account_number"  name="account_number" placeholder="{{ 'account_number' | translate }}"></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.ifsc_code"  name="ifsc_code" placeholder="{{ 'ifsc_code' | translate }} e.g SBIN0123456"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+            <ion-input type="text" [(ngModel)]="profileFormField.upi_id" name="upi_id" placeholder="{{ 'upi_id' | translate }} e.g 1234567890@sbi" ></ion-input>
+          </ion-item>
+        </ion-row> 
+        <ion-row>
+          <ion-item class="ion-margin-bottom">
+            <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+            <ion-input type="text"  placeholder="{{ 'upload_bank_details' | translate }}"  (click)="showPhoto(true)"></ion-input>
+          </ion-item>
+        </ion-row>
+
+        <ion-button type="submit" class="login-btn" color="secondary" expand="block">
+          <ion-icon name="send" style="margin-right: 8px;"></ion-icon> {{ 'update' | translate }}
+        </ion-button>
+    </form>
+  </ion-grid>
+
+</ion-list>
+</ion-content>
+
+ -->

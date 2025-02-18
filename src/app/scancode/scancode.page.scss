@@ -1,0 +1,246 @@
+ion-content {
+  --background: none;
+  background-color: #EFF3F6;
+}
+.img {
+  width: 100%;
+  // margin-left: 10px;
+}
+.gap{
+  margin-top: 10px;
+}
+.gap1{
+  margin-top: 70px;
+  padding-left: 10px;
+}
+.gap3{
+  margin-top: -21px;
+  padding-left: 19px;
+  padding-right: 25px;
+}
+.gap4{
+  margin-top: -27px;
+}
+.gap5{
+  margin-top: 10px;
+  padding-left: 10px;
+}
+.circle-promocode-container {
+  width: 180px; /* Adjust the size as needed */
+  height: 180px; /* Adjust the size as needed */
+  background-color: #fff; /* Adjust the color as needed */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; /* Center the circle container */
+}
+.ion-input {
+  border-radius: 10px;
+  --padding-start: 10px !important;
+  height:50px;
+  background: white !important;
+}
+.apply-button {
+  position: absolute;
+  right: 16px;
+  top: 42%;
+  transform: translateY(-50%);
+  height: 100%;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  font-size: 12px;
+  color: #025C8D; /* Customize this color as needed */
+  text-transform: none;
+  font-weight: 900;
+}
+.or {
+  text-align: center;
+  width: 100%;
+}
+.or ion-col h2 {
+  text-align: center;
+  display: inline-block;
+  line-height: 50px;
+  margin-top: 15px !important;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 900;
+  color: black;
+}
+.btn-create {
+  --box-shadow: none;
+  --border-radius: 10px;
+  --padding-bottom: 25px;
+  --padding-top: 25px;
+  --padding-left: 25px;
+  --padding-right: 25px;
+  width: 100%;
+  color: #fff;
+  text-transform: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .or {
+//   text-align: center;
+//   width: 100%;
+// }
+
+// .or ion-col h2 {
+//   background-color: #111;
+//   width: 50px;
+//   height: 50px;
+//   text-align: center;
+//   display: inline-block;
+//   line-height: 50px;
+//   margin-top: 15px !important;
+//   border-radius: 50%;
+//   font-size: 16px;
+//   color: #fff;
+// }
+
+// .qr-input-main {
+//   padding: 0 !important;
+// }
+
+// .item-md.item-block .item-inner {
+//   padding-right: 0;
+//   border-bottom: none;
+// }
+
+// .qr-input {
+//   border-radius: 30px;
+//   background-color: #f5f5f5;
+//   margin-bottom: 10px !important;
+//   width: 100% !important;
+//   max-width: 100% !important;
+//   height: 50px;
+// }
+
+// .btn-create {
+//   --box-shadow: none;
+//   --border-radius: 30px;
+//   --padding-bottom: 25px;
+//   --padding-top: 25px;
+//   --padding-left: 25px;
+//   --padding-right: 25px;
+//   width: 100%;
+//   color: #fff;
+// }
+// ion-icon {
+//   margin-right: 8px;
+// }
+
+
+// form{
+//   ion-item {
+//     --border: none !important;
+//     --box-shadow: none !important;
+//     --border-radius: 30px !important;
+//     --background: #f5f5f5 !important;
+//     width: 100%;
+//   }
+//   .or ion-col h2 {
+//     background-color: #111;
+//     width: 50px;
+//     height: 50px;
+//     text-align: center;
+//     display: inline-block;
+//     line-height: 50px;
+//     margin-top: 15px !important;
+//     border-radius: 50%;
+//     font-size: 16px;
+//     color: #fff;
+//   }
+  
+//   .qr-input-main {
+//     padding: 0 !important;
+//   }
+  
+//   .item-md.item-block .item-inner {
+//     padding-right: 0;
+//     border-bottom: none;
+//   }
+  
+//   .qr-input {
+//     border-radius: 30px;
+//     background-color: #f5f5f5;
+//     margin-bottom: 10px !important;
+//     width: 100% !important;
+//     max-width: 100% !important;
+//   }
+  
+//   .btn-create {
+//     --box-shadow: none;
+//     --border-radius: 30px;
+//     --padding-bottom: 25px;
+//     --padding-top: 25px;
+//     --padding-left: 25px;
+//     --padding-right: 25px;
+//     width: 100%;
+//     --color: #ffffff;
+//   }
+//   .or {
+//     text-align: center;
+//     width: 100%;
+//   }
+//   ion-item ion-icon {
+//     margin-top: 5px !important;
+//     color: #a9a9a9;
+//     font-size: 22px;
+//   }
+//   .item-select ion-label {
+//     -webkit-box-flex: initial;
+//     -webkit-flex: initial;
+//     -ms-flex: initial;
+//     flex: initial;
+//     max-width: 200px;
+//   }
+//   ion-select {
+//     width: 100%;
+//     max-width: 100%;
+//   }
+  
+// }

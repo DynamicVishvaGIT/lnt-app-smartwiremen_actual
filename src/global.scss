@@ -1,0 +1,200 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+ion-toolbar, ion-content, ion-header, ion-footer, ion-title, ion-label, ion-button, ion-input, p, span {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+// $colors: (
+//   primary:    #f4b404,
+//   secondary:  #0a4f8b,
+//   danger:     #f53d3d,
+//   light:      #f4f4f4,
+//   dark:       #222,
+//   success: #32db64
+// );
+ion-toolbar{
+  --background:#015c8d;
+  color:white;
+  ion-title{
+    font-weight:300;
+  }
+}
+
+
+
+ion-modal.auto-height {
+    &.bottom{
+      align-items: flex-end;
+    }
+    --height:auto;
+    background: #00000082;
+  
+    .modal-wrapper{
+      // top: 50%;
+      position: absolute;
+      display: block;
+      width: 100%;
+      background: #fff;
+      bottom: 0;
+    }
+  
+    .ion-page {
+        position: relative;
+        display: block;
+        contain: content;
+  
+        .inner-content {
+            max-height: 80vh;
+            overflow: auto;
+            padding: 10px 0;
+            background: white;
+        }
+    }
+  }
+  
+  ion-title{
+    color: #ffffff;
+  }
+
+  ion-label {
+    color: #333 !important;
+    font-size: small;
+  }
+  
+  .ion-input {
+    // border: 1px solid #9b9ca6;
+    // border: 1px solid #9b9ca696;
+    border-radius: 10px;
+    // --padding-start: 5px !important;
+    --padding-start: 10px !important;
+    // height:20px;
+    height:50px;
+    // background: #d8e6ef;
+    background: #D8E7F0;
+  }
+  
+  .ion-item{
+    // border-bottom: 1px solid #677483;
+    --padding-start: 0;
+    --ripple-color: transparent;
+    --background-activated: transparent;
+    --background-activated-opacity:transparent;
+    --background-focused: transparent;
+    --background-focused-opacity:transparent;
+    --background-hover  : transparent;
+    --background-hover-opacity  :transparent;
+    --background: transparent !important;
+  
+    ion-label {
+        font-size: 12px;
+        color: #9b9ca6;
+  
+    }
+  }
+
+  // FOR MANDETORY FIELD
+
+.required:after {
+  content:" *";
+  color: red;
+}
+
+// FOR CUSTOM SELECT DROPDOWN
+
+// ion-select {
+//   width: 100% !important;
+//   max-width: 100%;
+//   --padding-start: 0;
+//   min-height: 33px;
+//   border: 1px solid #9b9ca6;
+//   border-radius: 5px;
+//   padding: 3px;
+//   background: #D8E7F0;
+// }
+
+ion-select {
+  width: 100% !important;
+  max-width: 100%;
+  --padding-start: 0;
+  min-height: 50px;
+  /* border: 1px solid #9b9ca6; */
+  border-radius: 10px;
+  padding: 10px;
+  background: #D8E7F0;
+}
+
+ion-select::part(icon) {
+  //color: #971e49;
+  margin-left: 320px !important;
+  position: absolute;
+}
+
+
+// FOR INPUT FIELDS
+
+.ion-label{
+  color:black;
+  font-size: 13px;
+  color: black!important;
+  font-size: small;
+  font-weight: 500;
+}
+.ion-textarea{
+  // border: 1px solid #9b9ca6;
+  border-radius: 10px;
+  --padding-start: 5px !important;
+  // background: #d8e6ef;
+  background: #D8E7F0;
+}
+.ion-datetime{
+  // border: 1px solid #9b9ca6;
+  border-radius: 10px;
+  --padding-start: 10px !important;
+  width: 100%;
+  height:50px;
+  // background: #d8e6ef;
+  background: #D8E7F0;
+}
+
+.sc-ion-input-ios-h {
+  --placeholder-color: #000000 !important;
+  // --placeholder-color: #131313 !important;
+}
+
+.custom-popover {
+  z-index: 10000; /* Adjust the value as needed */
+}
+ion-tab-button ion-label {
+  color: inherit !important; /* Inherit color from the ion-tab-button */
+}

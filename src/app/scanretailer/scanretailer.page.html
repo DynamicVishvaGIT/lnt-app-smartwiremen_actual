@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon color="light" name="arrow-back-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Scan Retailer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <form (ngSubmit)="submitRetailerForm()">
+    <ion-row>
+      <ion-item class="ion-margin-bottom" >
+        <ion-label ><ion-icon slot="start" name="list"></ion-icon></ion-label>
+        <ion-select placeholder="Select Retailer" [(ngModel)]="retailerid" name="retailerid">
+          <ion-select-option value="{{retailer.id}}" *ngFor="let retailer of retailer_list">{{retailer.first_name}} {{retailer.last_name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+    <ion-button class="btn-create" type="submit">{{ 'submit' | translate }}</ion-button>
+    <ion-row class="or">
+      <ion-col><h2>{{ 'or' | translate }}</h2></ion-col>
+    </ion-row>
+</form>
+  <br>
+  <ion-button class="btn-create "   (click)="scanCode()" color="secondary"><ion-icon style="margin-right: 8px;" name="scan-sharp"></ion-icon>{{ 'scan_code' | translate }}</ion-button>
+  <br>
+  <ion-card *ngIf="scannedCode">
+    <ion-card-content>
+      {{ 'result_form_scan' | translate }} : {{ scannedCode }}
+    </ion-card-content>
+  </ion-card>
+
+  <br>
+  <ion-card *ngIf="retailer">
+    <ion-card-content>
+    Last Retailer scanned   
+    <br>
+    <b>{{retailer.first_name}} {{retailer.last_name}}</b>
+    <br>
+
+    <b>{{retailer.username}} </b>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

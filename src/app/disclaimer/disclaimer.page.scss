@@ -1,0 +1,18 @@
+.bor{
+    --inner-border-width: 0 0 0px 0;
+}
+.card-content-md p {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.5;
+    text-align: justify;
+}
+.card-content-md p strong.cb{
+    font-weight: 600;
+    color: #0a4f8b;
+    --ion-text-color:#0a4f8b;
+}

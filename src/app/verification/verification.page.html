@@ -1,0 +1,73 @@
+<ion-header class="ion-no-border">
+</ion-header>
+<ion-content>
+  <div style="margin-top: 10%;text-align:center;">
+    <p style="color:black;font-size: large;font-weight: 800;">OTP</p>
+  </div>
+  <div style="margin-top:15%;text-align:start;margin-left: 15px;">
+    <p style="color:black;font-size: large;font-weight: 800;">Verify with OTP</p>
+    <p style="color:black">OTP sent to your mobile no.  +91 {{mobile_no}}</p>
+  </div>
+  <div class="ion-text-center">
+    <a >Change</a>
+  </div>
+  <div style="margin-top:10%;margin-left: -153px;">
+    <app-custom-otp-input [length]="4" (otpChange)="handleOtpChange($event)" #otpInput></app-custom-otp-input>
+    <!-- <ng-otp-input #ngOtpInput
+    [config]="{
+      allowNumbersOnly: true,
+      length: 5,
+      isPasswordInput: false,
+      disableAutoFocus: false,
+      placeholder:'',
+      inputStyles: {
+      'color':'#ffff',
+      'text-align':'center',
+      'background': '#071947',
+      'width': '50px',
+      'height': '50px',
+      'border-radius':'8px'
+      }
+    }"> 
+    </ng-otp-input> -->
+    <p class="resend_otp"><span style="color:#0000;font-size: smaller;">Resend OTP in 30s</span></p>
+  </div>
+</ion-content>
+<ion-footer class="ion-no-border" style="padding: 10px;background: #ffff;">
+  <ion-toolbar position="bottom">
+    <ion-button color="primary" class="login-btn" (click)="verifyOTP()">Verify</ion-button>
+  </ion-toolbar>
+</ion-footer>
+
+
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>Mobile Number Verification</ion-title>
+    <ion-buttons slot="end"><ion-button  (click)="doLogout()" class="logoutbtn"><ion-icon name="md-log-out"></ion-icon></ion-button></ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <h4>{{ mobile_no }}</h4>
+      <h6>{{ 'mobile_no_verification' | translate }}</h6>
+    </ion-col>
+  </ion-row>
+
+  <form (ngSubmit)="submitOTPForm()" *ngIf="otp_send">
+   
+      <ion-input  type="number" placeholder="{{ 'enter_otp' | translate }}" class="otp-input" [(ngModel)]="inputCode" name="inputCode"></ion-input>
+  
+    <ion-button class="btn-create" style="--color: #ffffff;"  expand="block" type="submit">{{ 'verify' | translate }}</ion-button>
+</form>
+
+<ion-card *ngIf="timer && otp_send" class="card_timer no-padding">
+  <ion-card-content class="no-padding">
+    <ion-button  *ngIf="timeInSeconds && timeInSeconds > 0" size="large" expand="block" fill="clear" class="timer-button x-large">{{ 'time_left' | translate }} : {{timer.displayTime}}</ion-button>
+  </ion-card-content>
+</ion-card>
+<ion-button  *ngIf="!otp_send" class="btn-create"   expand="block" (click)="sendOTP()" color="secondary">{{ 'send_otp' | translate }}</ion-button>
+</ion-content> -->

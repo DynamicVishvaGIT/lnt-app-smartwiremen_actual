@@ -1,0 +1,8 @@
+{
+  "name": "smartwiremen",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,27 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon color="light" name="arrow-back-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div>
+    <ion-button  *ngIf="questions" expand="block" shape="round" class="answer-question ion-margin" >Watch Video</ion-button>
+  </div>
+  <ion-row  *ngIf="Video" class="ion-margin" >
+    <div class="frame-div">
+    <iframe class="responsive-iframe" [src]="sanitizer.bypassSecurityTrustResourceUrl(Video.video_link)"  target="_parent" allowfullscreen></iframe>
+  </div>
+</ion-row>
+<div>
+  <ion-button  *ngIf="questions" expand="block" shape="round" class="answer-question ion-margin" (click)="answerQuestions()">Answer questions</ion-button>
+</div>
+</ion-content>

@@ -1,0 +1,35 @@
+
+<ion-content></ion-content>
+
+<div class="inner-content">
+
+  <form (ngSubmit)="addLeadForm()">
+    <ion-row  class="ion-margin-bottom" style="border-bottom: 1px solid;">
+      <ion-col  size="2">
+        <ion-icon style="font-weight: bold;
+        font-size: 22px;
+        margin-left: 14px;" name="close" (click)="closeDrawer('')"></ion-icon>
+      </ion-col>
+      <ion-col size="9" style="font-size: 20px;
+      font-weight: bold;
+      text-align: center;margin: -9px;
+     ">
+        <p class="ion-text-center" style="margin: 10px;margin-left: -22px;">Add {{type |titlecase }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-margin-bottom" style="padding: 0 18px;">
+      <ion-input type="number" [(ngModel)]="addLeadFormField.username" name="username" placeholder="Username (Primary mobile no) *"></ion-input>
+    </ion-row>
+    <ion-row class="ion-margin-bottom" style="padding: 0 18px;">
+      <ion-input type="text" [(ngModel)]="addLeadFormField.first_name" name="first_name" placeholder="First Name *"></ion-input>
+    </ion-row>
+    <ion-row class="ion-margin-bottom" style="padding: 0 18px;">
+      <ion-input type="text" [(ngModel)]="addLeadFormField.last_name" name="last_name" placeholder="Last Name  *"></ion-input>
+    </ion-row>
+    <div class="submit-btn" type="submit" style="padding: 0 10px;" >
+      <ion-button color="secondary"  expand="block" >
+          Add
+       </ion-button>
+      </div>
+      </form>
+  </div>

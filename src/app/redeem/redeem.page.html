@@ -1,0 +1,317 @@
+<ion-content [fullscreen]="true">
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+  	</ion-refresher>
+    <div class="ion-padding-top ion-padding-horizontal">
+      	<ion-grid>
+			<ion-row>
+				<ion-col size="2" style="text-align: start;margin-left: -26px;">
+					<ion-menu-button></ion-menu-button>
+				</ion-col>
+				<ion-col size="8" style="text-align: center;">
+					<strong class="header" style="color:#131313;">{{ 'gift_redeem' | translate }}</strong>
+				</ion-col>
+			</ion-row>
+      	</ion-grid>
+    </div>
+	<ion-searchbar class="custom" name="search" [(ngModel)]="terms" placeholder="{{ 'search_gifts' | translate }}" mode="ios"></ion-searchbar>
+	<div class="gift-card-gap" *ngIf="items && restricted_array && gift_code_array">  <!--ion-padding-horizontal-->
+		<ion-card class="ion-margin-bottom gift-card border-left-color" mode="ios" *ngFor="let gift of items | search : terms; let i = index;" >
+		  	<ion-grid>
+				<ion-row>
+					<ion-col size="3" class="border-right">
+						<div [ngClass]="(gift.gift_name.charAt(0) === 'G' || gift.gift_name.charAt(0) === 'g')?'img-container':''">
+							<img src="../../assets/imgs/no-image.png" *ngIf="!gift?.gift_image" alt="" [ngClass]="(gift.gift_name.charAt(0) === 'G' || gift.gift_name.charAt(0) === 'g')?'img-googlepay-card':'img-gift-card'">     
+							<img src="https://smartwiremen.com/storage/gift_images/{{ gift?.gift_image }}" *ngIf="gift?.gift_image" alt="" [ngClass]="(gift.gift_name.charAt(0) === 'G' || gift.gift_name.charAt(0) === 'g')?'img-googlepay-card':'img-gift-card'">
+						</div> 
+					</ion-col>
+					<ion-col size="9">
+						<ion-grid style="margin-top: -11px;margin-left: -8px;">
+							<ion-row class="text-header-align">
+								<ion-col size="9" class="ion-text-wrap" style="text-align:start;">
+									<span style="font-size: small;">{{ 'product_name' | translate }}</span>
+								</ion-col>
+							</ion-row>
+							<ion-row class="text-body-align" style="margin-top: -8px;">
+								<ion-col size="9" class="ion-text-wrap" style="text-align:start;">
+									<span style="font-size: 14px;color:black;font-weight: 500;">{{ gift?.gift_name }}</span>
+								</ion-col>
+							</ion-row>
+							<ion-row class="text-header-align">
+								<ion-col size="6" style="text-align:start;">
+									<span style="font-size: small;">{{ 'point' | translate }}</span>
+								</ion-col>
+								<ion-col size="6" style="text-align: center;">
+									<span style="margin-left: -63px;font-size: small;"> {{ 'qty' | translate }}</span>
+								</ion-col>
+							</ion-row>
+							<ion-row class="text-body-align" style="margin-top: -8px;">
+								<ion-col size="6" style="text-align: start;">
+									<span style="font-size: 14px;color:black;font-weight: 500;">{{ gift?.points }}</span>
+								</ion-col>
+								<ion-col size="6" style="text-align: center;" *ngIf="isInArray(gift?.gift_ref_code, gift_code_array);">
+									<div style="margin-left: -34px;">
+										<div class="counter">
+											<span class="down"><ion-icon name="remove-circle" disabled></ion-icon></span>   <!--(click)="counter('-',rindex, sponsorship)"-->
+											<input type="number" readonly [(ngModel)]="gift_quantity" name="qty_{{i}}" [value]="gift_quantity" class="input-focused">  <!--value="{{sponsorship.quantity}}" [(ngModel)]="sponsorship.quantity"-->
+											<span class="up"><ion-icon name="add-circle" disabled></ion-icon></span>  <!--(click)="counter('+', rindex, sponsorship)"-->
+										</div>
+									</div>
+								</ion-col>
+								<ion-col size="6" style="text-align: center;" *ngIf="!isInArray(gift?.gift_ref_code, gift_code_array);">
+									<div style="margin-left: -34px;">  <!--style="margin-left: -23px;"-->
+										<div class="counter">
+											<span class="down" (click)="decrementQty(gift)"><ion-icon name="remove-circle"></ion-icon></span>   <!--(click)="counter('-',rindex, sponsorship)"-->
+											<input type="number" readonly [(ngModel)]="gift.qty" name="qty_{{i}}" [value]="gift.qty" class="input-focused">  <!--value="{{sponsorship.quantity}}" [(ngModel)]="sponsorship.quantity"-->
+											<span class="up" (click)="incrementQty(gift)"><ion-icon name="add-circle"></ion-icon></span>  <!--(click)="counter('+', rindex, sponsorship)"-->
+										</div>
+									</div>
+								</ion-col>
+							</ion-row>
+							<ion-row class="text-header-align" style="margin-top: -13px;">
+								<ion-col size="6" style="text-align:start;">
+									<span style="font-size: small;">{{ 'total' | translate }}</span>
+								</ion-col>
+								<ion-col style="margin-top:10px" size="6">
+								
+								</ion-col>
+							</ion-row>
+							<ion-row class="text-body-align" style="margin-top: -8px;">
+								<ion-col size="6" style="text-align: start;" *ngIf="isInArray(gift?.gift_ref_code, gift_code_array);">
+									<span style="font-size: 14px;color:black;font-weight: 500;">{{gift.points}}</span>
+								</ion-col>
+								<ion-col size="6" style="text-align: start;" *ngIf="!isInArray(gift?.gift_ref_code, gift_code_array);">
+									<span style="font-size: 14px;color:black;font-weight: 500;">{{ (gift.qty ? gift.qty : 0) * gift.points}}</span>
+								</ion-col>
+								<ion-col size="6" style="margin-top: -13px;">  <!--text-align: center;-->
+									<ion-button style="width: 76px; --color: white;" color="primary" size="small" (click)="orderGift(gift)">
+										<ion-icon name="cart-outline" slot="start"></ion-icon>
+										{{ 'buy' | translate }}
+									</ion-button>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-card>
+	</div>
+</ion-content>
+<ion-bottom-sheet [(state)]="sheetState" [(dockedHeight)]="dockedHeight"[title]="title">
+  	<div *ngIf="upi">
+		<ion-row>
+			<ion-label class="ion-label">UPI ID</ion-label>
+			<ion-item lines="none" class="ion-margin-bottom ion-item" style="margin-top: 8px;"> <!--class="item-input-redeem"-->
+				<ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+				<ion-input  type="text" [(ngModel)]="profileFormField.upi_id" name="upi_id" placeholder="{{ 'upi_id' | translate }} e.g 1234567890@sbi" class="ion-input"></ion-input>
+			</ion-item>
+		</ion-row> 
+		<ion-button  class="update-btn" (click)="submitUPI()">Submit</ion-button>
+  	</div>
+  	<div *ngIf="bank">
+		<ion-row>
+			<ion-label class="ion-label">Account Holder Name</ion-label>
+			<ion-item lines="none" class="ion-margin-bottom ion-item" style="margin-top: 8px;">
+		  		<!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+		  		<ion-input type="text" [(ngModel)]="profileFormField.account_holder_name"  name="account_holder_name" placeholder="{{ 'account_holder_name' | translate }}" class="ion-input"></ion-input>
+			</ion-item>
+	  	</ion-row>
+	  	<ion-row>
+			<ion-label class="ion-label">Bank Name</ion-label>
+			<ion-item lines="none" class="ion-margin-bottom ion-item" style="margin-top: 8px;">
+		  		<!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+		  		<ion-input type="text" [(ngModel)]="profileFormField.bank_name"  name="bank_name" placeholder="{{ 'bank_name' | translate }}" class="ion-input"></ion-input>
+			</ion-item>
+	  	</ion-row>
+	  	<ion-row>
+			<ion-label class="ion-label">Branch Name</ion-label>
+			<ion-item lines="none" class="ion-margin-bottom ion-item" style="margin-top: 8px;">
+		  		<!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+		  		<ion-input type="text" [(ngModel)]="profileFormField.branch_name"  name="branch_name" placeholder="{{ 'branch_name' | translate }}" class="ion-input"></ion-input>
+			</ion-item>
+	  	</ion-row>
+	  	<ion-row>
+			<ion-label class="ion-label">Account Number</ion-label>
+			<ion-item lines="none" class="ion-margin-bottom ion-item" style="margin-top: 8px;">
+		  		<!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+		  		<ion-input type="text" [(ngModel)]="profileFormField.account_number"  name="account_number" placeholder="{{ 'account_number' | translate }}" class="ion-input"></ion-input>
+			</ion-item>
+	  	</ion-row>
+	  	<ion-row>
+			<ion-label class="ion-label">IFSC Code</ion-label>
+			<ion-item lines="none" class="ion-margin-bottom ion-item" style="margin-top: 8px;">
+		  		<!-- <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label> -->
+		  		<ion-input type="text" [(ngModel)]="profileFormField.ifsc_code"  name="ifsc_code" placeholder="{{ 'ifsc_code' | translate }} e.g SBIN0123456" class="ion-input"></ion-input>
+			</ion-item>
+	  	</ion-row>
+	  	<ion-button  class="btn-create" (click)="submitBankDetails()">Submit</ion-button>
+	</div>
+</ion-bottom-sheet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'gift_redeem' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="redeem-page ion-no-padding" >
+	<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+	    <ion-refresher-content>
+	    </ion-refresher-content>
+  	</ion-refresher>
+	<ion-searchbar name="search" [(ngModel)]="terms" placeholder="{{ 'search_gifts' | translate }}"></ion-searchbar>
+	
+	<div class="list-header ion-no-padding ion-no-margin">
+	<ion-row style="width: 100%;">
+	<ion-col size="4" >{{ 'product_name' | translate }}</ion-col>
+	
+	<ion-col size="3" >{{ 'qty' | translate }}</ion-col>
+	<ion-col size="3" class="ion-text-center">{{ 'total' | translate }}</ion-col>
+	<ion-col size="2" class="ion-text-center">{{ 'buy' | translate }}</ion-col>
+	</ion-row>
+	</div>
+	<div *ngIf="items && restricted_array && gift_code_array" class="list-content ion-no-padding">
+		<ion-item class="ion-no-padding" *ngFor="let gift of items | search : terms; let i = index;">
+			<ion-row style="width: 100%;">
+				<ion-col size="4" class="product_name"> 
+					{{ gift?.gift_name }} <br/> {{ 'point' | translate }} : {{ gift?.points }}
+				<ion-img  src="../../assets/imgs/no-image.png" width="100" *ngIf="!gift?.gift_image"></ion-img>
+				<ion-img src="https://smartwiremen.com/storage/gift_images/{{ gift?.gift_image }}" width="100" *ngIf="gift?.gift_image"></ion-img>
+				</ion-col>
+				
+				
+				
+
+				<ion-col style="margin-top: 8px;" *ngIf="isInArray(gift?.gift_ref_code, gift_code_array);" size="3" class="ion-no-padding">
+				<ion-row>
+				<ion-col size="4" style="padding-left: 0;">
+					<ion-icon disabled color="success" size="large" name="add-circle-sharp"  class="ion-no-padding"></ion-icon>
+
+				</ion-col>
+				<ion-col size="4">
+					<ion-input readonly  type="number" [(ngModel)]="gift_quantity" name="qty_{{i}}"  class="qty_input"></ion-input>
+				</ion-col>
+				<ion-col size="4" >
+					<ion-icon disabled color="danger" size="large" name="remove-circle"  class="ion-no-padding"></ion-icon>
+				</ion-col>
+				</ion-row>
+					
+					
+	    		</ion-col>
+				<ion-col style="margin-top: 8px;" *ngIf="!isInArray(gift?.gift_ref_code, gift_code_array);" size="3" class="ion-no-padding">
+				<ion-row>
+					<ion-col size="4" style="padding-left: 0;">
+						<ion-icon color="success" size="large"  name="add-circle-sharp" (click)="incrementQty(gift)" class="ion-no-padding"></ion-icon>
+					</ion-col>
+					<ion-col size="4">
+						<ion-input readonly  type="number" [(ngModel)]="gift.qty" name="qty_{{i}}"  class="qty_input"></ion-input>
+						
+					</ion-col>
+					<ion-col size="4" >
+						<ion-icon color="danger" size="large" name="remove-circle" (click)="decrementQty(gift)" class="ion-no-padding"></ion-icon>
+
+					</ion-col>
+				</ion-row>
+
+						
+						
+
+					
+				
+	    		</ion-col>
+				<ion-col style="margin-top: 16px;" *ngIf="isInArray(gift?.gift_ref_code, gift_code_array);" size="3" class="ion-text-center">
+					<span class="ion-text-center">{{gift.points}}</span>
+				</ion-col>
+				<ion-col style="margin-top: 16px;" *ngIf="!isInArray(gift?.gift_ref_code, gift_code_array);" size="3" class="ion-text-center"><span style="margin-left: 22px;">{{ (gift.qty ? gift.qty : 0) * gift.points}}</span></ion-col>
+				<ion-col size="2"><ion-button  fill="clear"  size="large" color="primary" (click)="orderGift(gift)"><ion-icon  name="cart"></ion-icon></ion-button></ion-col>
+			</ion-row>
+		</ion-item>	
+	</div>
+</ion-content>
+<ion-bottom-sheet 
+    [(state)]="sheetState" 
+	[(dockedHeight)]="dockedHeight"
+	[title]="title"
+  >
+  <div *ngIf="upi">
+	<ion-row>
+		<ion-label class="form-label">UPI ID</ion-label>
+
+		<ion-item lines="none" class="ion-margin-bottom" class="item-input-redeem">
+		  <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+		  <ion-input  type="text" [(ngModel)]="profileFormField.upi_id" name="upi_id" placeholder="{{ 'upi_id' | translate }} e.g 1234567890@sbi" ></ion-input>
+		</ion-item>
+	  </ion-row> 
+	  <ion-button  class="update-btn" (click)="submitUPI()">Submit</ion-button>
+
+  </div>
+  <div *ngIf="bank">
+	<ion-row>
+		<ion-label class="form-label">Account Holder Name</ion-label>
+
+		<ion-item lines="none" class="ion-margin-bottom" class="item-input-redeem">
+		  <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+		  <ion-input type="text" [(ngModel)]="profileFormField.account_holder_name"  name="account_holder_name" placeholder="{{ 'account_holder_name' | translate }}"></ion-input>
+		</ion-item>
+	  </ion-row>
+
+	  <ion-row>
+		<ion-label class="form-label">Bank Name</ion-label>
+
+		<ion-item lines="none" class="ion-margin-bottom" class="item-input-redeem">
+		  <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+		  <ion-input type="text" [(ngModel)]="profileFormField.bank_name"  name="bank_name" placeholder="{{ 'bank_name' | translate }}"></ion-input>
+		</ion-item>
+	  </ion-row>
+
+	  <ion-row>
+		<ion-label class="form-label">Branch Name</ion-label>
+
+		<ion-item lines="none" class="ion-margin-bottom" class="item-input-redeem">
+		  <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+		  <ion-input type="text" [(ngModel)]="profileFormField.branch_name"  name="branch_name" placeholder="{{ 'branch_name' | translate }}"></ion-input>
+		</ion-item>
+	  </ion-row>
+
+	  <ion-row>
+		<ion-label class="form-label">Account Number</ion-label>
+
+		<ion-item lines="none" class="ion-margin-bottom" class="item-input-redeem">
+		  <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+		  <ion-input type="text" [(ngModel)]="profileFormField.account_number"  name="account_number" placeholder="{{ 'account_number' | translate }}"></ion-input>
+		</ion-item>
+	  </ion-row>
+
+	  <ion-row>
+		<ion-label class="form-label">IFSC Code</ion-label>
+
+		<ion-item lines="none" class="ion-margin-bottom" class="item-input-redeem">
+		  <ion-label ><ion-icon name="pencil-sharp"></ion-icon></ion-label>
+		  <ion-input type="text" [(ngModel)]="profileFormField.ifsc_code"  name="ifsc_code" placeholder="{{ 'ifsc_code' | translate }} e.g SBIN0123456"></ion-input>
+		</ion-item>
+	  </ion-row>
+	  <ion-button  class="update-btn" (click)="submitBankDetails()">Submit</ion-button>
+  </div>
+
+</ion-bottom-sheet> -->

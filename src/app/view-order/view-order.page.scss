@@ -1,0 +1,38 @@
+ion-content {
+    --background: none;
+    background-color: #EFF3F6;
+}
+.gap{
+    margin-top: 10px;
+    // padding-left: 10px;
+}
+.gap2{
+    margin-top: -7px;
+}
+.order-card {
+    margin-top: -8px;
+    height: auto;
+    border-radius:12px;
+    width: 95%;
+    background: #015c8d;
+    color:#ffff;
+}
+  
+.text-body-align{
+    text-transform: none;
+    margin-left: -23px;
+}
+.order-card2 {
+    margin-top: -8px;
+    height: auto;
+    border-radius:12px;
+    width: 95%;
+    background: #ffff;
+    color:#131313;
+}
+.icon-size{
+    font-size: 20px;
+}
+.border-bottom-color{
+    border-bottom: 5px solid #015c8d;
+}
